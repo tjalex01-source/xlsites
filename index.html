@@ -106,6 +106,8 @@
   .hero-trust{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;color:var(--muted);font-weight:500}
   .hero-trust span{display:inline-flex;align-items:center;gap:7px}
   .hero-trust span::before{content:"✓";color:var(--green);font-weight:800}
+  .hero-trust span.hot{background:var(--honey-soft);color:var(--ink);font-weight:700;padding:4px 12px;border-radius:100px}
+  .hero-trust span.hot::before{content:"★";color:var(--honey)}
   .mock-wrap{opacity:0;animation:heroIn 1s cubic-bezier(.16,1,.3,1) .34s forwards}
 
   /* ---------- browser mock (signature) ---------- */
@@ -224,6 +226,8 @@
   .pcard .pp{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:2.5rem;line-height:1;margin-bottom:6px}
   .pcard .pp .u{font-family:'Hanken Grotesk';font-size:1rem;font-weight:500;color:var(--muted)}
   .pcard .pn{color:var(--muted);font-size:14px;margin-bottom:20px;min-height:2.6em}
+  .pcard .domain-badge{display:flex;align-items:center;gap:8px;background:var(--honey-soft);color:var(--ink);border-radius:12px;padding:11px 14px;font-size:13.5px;font-weight:700;margin-bottom:18px}
+  .pcard .domain-badge::before{content:"★";color:var(--honey);font-size:15px}
   .pcard ul{list-style:none;margin-bottom:0;flex:1}
   .pcard li{font-size:15px;color:var(--ink-soft);padding:9px 0;border-top:1px solid var(--line);display:flex;gap:10px}
   .pcard li:first-child{border-top:none}
@@ -255,9 +259,10 @@
   .final p{color:var(--ink-soft);font-size:1.16rem;max-width:44ch;margin:0 auto 34px}
 
   footer{background:var(--paper-2);border-top:1px solid var(--line);padding:44px 0}
-  footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px 20px;flex-wrap:wrap;color:var(--muted);font-size:14px}
   footer a{color:var(--ink-soft);font-weight:500}
   footer a:hover{color:var(--green)}
+  .foot-links{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
 
   /* responsive */
   @media(max-width:920px){
@@ -319,6 +324,7 @@
           <a href="#how" class="btn btn-ghost">See how it works</a>
         </div>
         <div class="hero-trust">
+          <span class="hot">Free domain included</span>
           <span>Hosting &amp; updates included</span>
           <span>Live in about a week</span>
           <span>One friendly point of contact</span>
@@ -532,11 +538,12 @@
           <div class="pl">The Build</div>
           <div class="pp">$999<span class="u"> once</span></div>
           <div class="pn">Everything from your first answers to a live, done-for-you website.</div>
+          <div class="domain-badge">Free domain included &amp; connected</div>
           <ul>
             <li>Guided onboarding + full build</li>
             <li>Working site in about a week</li>
             <li>Looks great on phones</li>
-            <li>Your domain connected &amp; launched</li>
+            <li><b>Free domain</b> registered &amp; launched for you</li>
           </ul>
         </div>
         <div class="plus" aria-hidden="true">+</div>
@@ -547,9 +554,9 @@
           <div class="pn">Keeps your live site fast, secure, and up to date — hands-off for you.</div>
           <ul>
             <li>Fast, secure hosting included</li>
+            <li>Your domain kept registered &amp; renewed</li>
             <li>Backups &amp; uptime handled</li>
             <li><b>Small edits included</b> each month</li>
-            <li>Your account, always on</li>
           </ul>
         </div>
         <div class="plus" aria-hidden="true">+</div>
@@ -567,10 +574,10 @@
         </div>
       </div>
       <div class="price-sum reveal">
-        <p>It's all <b>one account</b>: $999 to launch, $49/month to keep it running, and $45/hour only when you want major changes. No tiers to pick between.</p>
+        <p>It's all <b>one account</b>: $999 to launch — <b>a free domain included</b> — then $49/month to keep it running, and $45/hour only when you want major changes. No tiers to pick between.</p>
         <a href="#start" class="btn btn-honey">Start your site →</a>
       </div>
-      <p class="price-fine">No logo yet? Ask about the logo add-on during onboarding. · No contracts — cancel your Care Plan anytime.</p>
+      <p class="price-fine">No logo yet? Ask about the logo add-on during onboarding. · No contracts — cancel your Care Plan anytime. · Every build is subject to our <a href="/terms" style="color:var(--green);font-weight:600">Terms</a> &amp; <a href="/privacy" style="color:var(--green);font-weight:600">Privacy Policy</a>, which you'll confirm at checkout.</p>
     </div>
   </section>
 
@@ -602,15 +609,16 @@
   <footer>
     <div class="wrap">
       <a href="#top" class="brand" style="font-size:18px"><span class="mk"></span>XLSites</a>
-      <span>© <span id="yr"></span> · A real website, done for you · <a href="mailto:tjalex@xandland.com">tjalex@xandland.com</a></span>
-      <a href="/filmmakers">For creatives ↗</a>
+      <span>© 2026 Xandland Enterprises, LLC · <a href="mailto:tjalex@xandland.com">tjalex@xandland.com</a></span>
+      <nav class="foot-links">
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/filmmakers">For creatives ↗</a>
+      </nav>
     </div>
   </footer>
 
 <script>
-  // year
-  document.getElementById('yr').textContent=new Date().getFullYear();
-
   // reduced-motion guard
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
