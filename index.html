@@ -56,32 +56,57 @@
   .btn-honey:hover{background:#e4972a;transform:translateY(-1px)}
 
   /* ---------- nav ---------- */
-  .nav{position:sticky;top:0;z-index:50;background:rgba(251,248,242,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:70px}
-  .brand{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:21px;letter-spacing:-.02em;display:flex;align-items:center;gap:9px}
+  .nav{position:sticky;top:0;z-index:50;background:rgba(251,248,242,.80);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);transition:box-shadow .3s,background .3s}
+  .nav.scrolled{background:rgba(251,248,242,.94);box-shadow:0 8px 30px -18px rgba(35,32,26,.5)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:21px;letter-spacing:-.02em;display:flex;align-items:center;gap:9px;transition:opacity .2s}
+  .brand:hover{opacity:.75}
   .brand .mk{width:15px;height:15px;border-radius:5px;background:var(--green);position:relative}
   .brand .mk::after{content:"";position:absolute;inset:4px 4px auto auto;width:5px;height:5px;border-radius:50%;background:var(--honey)}
-  .nav-links{display:flex;align-items:center;gap:30px}
-  .nav-links a{font-weight:500;font-size:15px;color:var(--ink-soft);transition:color .2s}
-  .nav-links a:hover{color:var(--ink)}
-  .nav-links a.creatives{color:var(--green);font-weight:600}
+  .nav-links{display:flex;align-items:center;gap:26px}
+  /* plain text links (exclude the pill buttons) */
+  .nav-links a:not(.btn){font-weight:600;font-size:15px;color:var(--ink-soft);transition:color .2s;position:relative}
+  .nav-links a:not(.btn)::after{content:"";position:absolute;left:0;right:100%;bottom:-5px;height:2px;background:var(--green);border-radius:2px;transition:right .28s cubic-bezier(.16,1,.3,1)}
+  .nav-links a:not(.btn):hover{color:var(--ink)}
+  .nav-links a:not(.btn):hover::after{right:0}
+  .nav-links a.creatives{color:var(--green)}
+  .nav-links a.creatives::after{background:var(--honey)}
+  /* the header CTA — force legible white-on-green (was inheriting dark link colour) */
+  .nav-links a.cta-link{color:#fff;font-weight:700;padding:11px 22px;box-shadow:0 8px 20px -8px rgba(30,91,68,.7)}
+  .nav-links a.cta-link:hover{color:#fff;background:var(--green-deep);transform:translateY(-1px)}
 
   /* ---------- hero ---------- */
   .hero{padding:76px 0 90px;position:relative;overflow:hidden}
   .hero::before{
     content:"";position:absolute;top:-30%;right:-15%;width:60vw;height:60vw;max-width:760px;max-height:760px;
     background:radial-gradient(circle,var(--green-tint),transparent 62%);z-index:0;
+    animation:drift1 18s ease-in-out infinite;
   }
+  .hero::after{
+    content:"";position:absolute;bottom:-38%;left:-12%;width:52vw;height:52vw;max-width:640px;max-height:640px;
+    background:radial-gradient(circle,var(--honey-soft),transparent 60%);opacity:.55;z-index:0;
+    animation:drift2 22s ease-in-out infinite;
+  }
+  @keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-34px,26px) scale(1.06)}}
+  @keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(38px,-30px) scale(1.08)}}
   .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center}
-  .hero-copy .eyebrow{margin-bottom:22px}
+  .hero-copy>*{opacity:0;animation:heroIn .85s cubic-bezier(.16,1,.3,1) forwards}
+  .hero-copy .eyebrow{margin-bottom:22px;animation-delay:.05s}
+  .hero-copy h1{animation-delay:.16s}
+  .hero-copy .hero-sub{animation-delay:.3s}
+  .hero-copy .hero-cta{animation-delay:.42s}
+  .hero-copy .hero-trust{animation-delay:.54s}
+  @keyframes heroIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
   .hero h1{font-size:clamp(2.5rem,5.3vw,4.05rem);margin-bottom:24px;max-width:14ch}
   .hero h1 .hl{color:var(--green);position:relative;white-space:nowrap}
-  .hero h1 .hl::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.34em;background:var(--honey-soft);z-index:-1;border-radius:3px}
+  .hero h1 .hl::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.34em;background:var(--honey-soft);z-index:-1;border-radius:3px;transform:scaleX(0);transform-origin:left;animation:underline .7s cubic-bezier(.16,1,.3,1) .7s forwards}
+  @keyframes underline{to{transform:scaleX(1)}}
   .hero-sub{font-size:1.16rem;color:var(--ink-soft);max-width:46ch;margin-bottom:34px}
   .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px}
   .hero-trust{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;color:var(--muted);font-weight:500}
   .hero-trust span{display:inline-flex;align-items:center;gap:7px}
   .hero-trust span::before{content:"✓";color:var(--green);font-weight:800}
+  .mock-wrap{opacity:0;animation:heroIn 1s cubic-bezier(.16,1,.3,1) .34s forwards}
 
   /* ---------- browser mock (signature) ---------- */
   .mock{
@@ -96,28 +121,68 @@
   .mock-bar .dots i{width:11px;height:11px;border-radius:50%;background:#D8CDB8;display:block}
   .mock-url{flex:1;background:#fff;border:1px solid var(--line);border-radius:100px;font-size:12px;color:var(--muted);padding:5px 12px;font-weight:500}
   .mock-live{font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--green);background:var(--green-tint);padding:3px 9px;border-radius:100px}
-  /* the fake site inside */
+  .mock-url{transition:opacity .35s ease}
+  /* the fake site inside — colours are driven by CSS vars so the mock can cycle
+     through business types (bakery / dental / salon / lawn care) */
+  .site-content{
+    --sn:#7A3E2B; --acc:#7A3E2B; --acc-soft:#FBE7C2; --h:#5A3320; --p:#8A6A52; --tag:#B06A3A;
+    --sh-bg:linear-gradient(160deg,#FDF6EC,#FBEAD4);
+    transition:opacity .4s ease;
+  }
+  .mock.fading .site-content{opacity:0}
+  .mock.fading .mock-url{opacity:.25}
   .site-nav{display:flex;align-items:center;justify-content:space-between;padding:14px 22px;border-bottom:1px solid var(--line)}
-  .site-nav .sn-logo{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:16px;color:#7A3E2B}
+  .site-nav .sn-logo{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:16px;color:var(--sn)}
   .site-nav .sn-links{display:flex;gap:14px}
   .site-nav .sn-links i{width:30px;height:7px;border-radius:4px;background:#EADFCF;display:block}
-  .site-hero{padding:30px 22px 26px;background:linear-gradient(160deg,#FDF6EC,#FBEAD4)}
-  .site-hero .sh-tag{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#B06A3A;margin-bottom:10px}
-  .site-hero h4{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.7rem;line-height:1.05;color:#5A3320;margin-bottom:10px}
-  .site-hero p{font-size:12.5px;color:#8A6a52;margin-bottom:16px;max-width:26ch}
-  .site-hero .sh-btn{display:inline-block;background:#7A3E2B;color:#fff;font-size:12px;font-weight:700;padding:9px 18px;border-radius:100px}
+  .site-hero{padding:30px 22px 26px;background:var(--sh-bg)}
+  .site-hero .sh-tag{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tag);margin-bottom:10px}
+  .site-hero h4{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.7rem;line-height:1.05;color:var(--h);margin-bottom:10px}
+  .site-hero p{font-size:12.5px;color:var(--p);margin-bottom:16px;max-width:26ch}
+  .site-hero .sh-btn{display:inline-block;background:var(--acc);color:#fff;font-size:12px;font-weight:700;padding:9px 18px;border-radius:100px}
   .site-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:18px 22px 24px}
   .site-cards .sc{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-align:center}
-  .site-cards .sc .ic{width:30px;height:30px;border-radius:8px;background:var(--honey-soft);margin:0 auto 8px}
+  .site-cards .sc .ic{width:30px;height:30px;border-radius:8px;background:var(--acc-soft);margin:0 auto 8px}
   .site-cards .sc i{width:100%;height:6px;border-radius:4px;background:#EADFCF;display:block;margin:5px 0}
   .site-cards .sc i.short{width:60%;margin-left:auto;margin-right:auto}
   .mock-caption{text-align:center;font-size:13.5px;color:var(--muted);margin-top:18px;font-weight:500}
 
   /* ---------- marquee / verticals ---------- */
-  .verticals{padding:46px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper-2)}
+  .verticals{padding:46px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper-2);overflow:hidden}
   .verticals .lead{text-align:center;font-weight:600;color:var(--ink-soft);margin-bottom:22px;font-size:15px}
-  .vrow{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 14px}
-  .chip{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:15px;color:var(--green-deep);background:var(--card);border:1px solid var(--line);border-radius:100px;padding:9px 18px}
+  .vtrack{
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+    overflow:hidden;
+  }
+  .vmarquee{display:flex;gap:14px;width:max-content;animation:scrollx 34s linear infinite}
+  .vmarquee:hover{animation-play-state:paused}
+  @keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .chip{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:15px;color:var(--green-deep);background:var(--card);border:1px solid var(--line);border-radius:100px;padding:9px 18px;white-space:nowrap;flex:0 0 auto}
+
+  /* ---------- portfolio / recent work ---------- */
+  .workgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .work{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s;color:inherit}
+  .work:hover{transform:translateY(-6px);box-shadow:0 28px 54px -28px rgba(22,66,49,.45)}
+  .work-shot{aspect-ratio:1200/900;overflow:hidden;background:var(--paper-2);border-bottom:1px solid var(--line);position:relative}
+  .work-shot img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .55s cubic-bezier(.16,1,.3,1)}
+  .work:hover .work-shot img{transform:scale(1.05)}
+  .work-tag{position:absolute;top:12px;left:12px;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:rgba(22,66,49,.82);padding:4px 11px;border-radius:100px;backdrop-filter:blur(4px)}
+  .work-body{padding:20px 20px 22px;flex:1;display:flex;flex-direction:column}
+  .work-body h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.16rem;margin-bottom:6px}
+  .work-body p{color:var(--ink-soft);font-size:14.5px;flex:1}
+  .work-link{margin-top:14px;font-weight:700;font-size:13px;color:var(--green);display:inline-flex;align-items:center;gap:6px;transition:gap .2s}
+  .work:hover .work-link{gap:11px}
+  /* the "your business next" CTA card */
+  .work.cta-card{background:linear-gradient(165deg,var(--green),var(--green-deep));border:none;align-items:flex-start;justify-content:center;padding:34px 30px;color:#fff}
+  .work.cta-card h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.5rem;line-height:1.1;margin-bottom:10px;color:#fff}
+  .work.cta-card p{color:#CFE2D6;font-size:14.5px;margin-bottom:20px}
+  .work.cta-card .btn{background:var(--honey);color:var(--ink)}
+  .work.cta-card:hover{box-shadow:0 28px 54px -24px rgba(22,66,49,.6)}
+
+  /* staggered scroll-in for grids */
+  .stagger>*{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s cubic-bezier(.16,1,.3,1)}
+  .stagger.in>*{opacity:1;transform:none}
 
   /* ---------- sections ---------- */
   section{padding:96px 0}
@@ -198,6 +263,7 @@
     .values{padding:46px 32px}
     .price-grid{grid-template-columns:1fr;max-width:460px;margin:0 auto}
     .cross{flex-direction:column;align-items:flex-start;padding:40px 32px}
+    .workgrid{grid-template-columns:repeat(2,1fr)}
     .nav-links a:not(.creatives):not(.cta-link){display:none}
   }
   @media(max-width:560px){
@@ -205,11 +271,15 @@
     .wrap{padding:0 20px}
     section{padding:70px 0}
     .site-cards{grid-template-columns:repeat(3,1fr)}
+    .workgrid{grid-template-columns:1fr;max-width:420px;margin:0 auto}
     .nav-links{gap:16px}
   }
   @media(prefers-reduced-motion:reduce){
     *,*::before,*::after{animation:none!important;transition:none!important}
-    .reveal{opacity:1;transform:none}
+    .reveal,.stagger>*{opacity:1;transform:none}
+    /* these start hidden and are revealed by animation — keep them visible when motion is off */
+    .hero-copy>*,.mock-wrap{opacity:1!important}
+    .hero h1 .hl::after{transform:none!important}
     .mock{transform:rotate(.6deg)}
   }
   :focus-visible{outline:2px solid var(--green);outline-offset:3px}
@@ -248,31 +318,33 @@
         </div>
       </div>
 
-      <!-- signature: a real-feeling sample site inside a browser -->
-      <div>
-        <div class="mock" aria-hidden="true">
+      <!-- signature: a real-feeling sample site inside a browser that cycles through business types -->
+      <div class="mock-wrap">
+        <div class="mock" id="mock" aria-hidden="true">
           <div class="mock-bar">
             <div class="dots"><i></i><i></i><i></i></div>
-            <div class="mock-url">rosewoodbakery.com</div>
+            <div class="mock-url" id="mkUrl">rosewoodbakery.com</div>
             <span class="mock-live">● LIVE</span>
           </div>
-          <div class="site-nav">
-            <span class="sn-logo">Rosewood Bakery</span>
-            <div class="sn-links"><i></i><i></i><i></i></div>
-          </div>
-          <div class="site-hero">
-            <div class="sh-tag">Fresh daily · Since 2009</div>
-            <h4>Warm bread, better mornings.</h4>
-            <p>Handmade loaves, pastries &amp; cakes — baked fresh every morning in the heart of town.</p>
-            <span class="sh-btn">Order for pickup →</span>
-          </div>
-          <div class="site-cards">
-            <div class="sc"><div class="ic"></div><i></i><i class="short"></i></div>
-            <div class="sc"><div class="ic"></div><i></i><i class="short"></i></div>
-            <div class="sc"><div class="ic"></div><i></i><i class="short"></i></div>
+          <div class="site-content" id="mkContent">
+            <div class="site-nav">
+              <span class="sn-logo" id="mkLogo">Rosewood Bakery</span>
+              <div class="sn-links"><i></i><i></i><i></i></div>
+            </div>
+            <div class="site-hero">
+              <div class="sh-tag" id="mkTag">Fresh daily · Since 2009</div>
+              <h4 id="mkH">Warm bread, better mornings.</h4>
+              <p id="mkP">Handmade loaves, pastries &amp; cakes — baked fresh every morning in the heart of town.</p>
+              <span class="sh-btn" id="mkBtn">Order for pickup →</span>
+            </div>
+            <div class="site-cards">
+              <div class="sc"><div class="ic"></div><i></i><i class="short"></i></div>
+              <div class="sc"><div class="ic"></div><i></i><i class="short"></i></div>
+              <div class="sc"><div class="ic"></div><i></i><i class="short"></i></div>
+            </div>
           </div>
         </div>
-        <p class="mock-caption">One of the kinds of sites we build — yours, designed around <em>your</em> business.</p>
+        <p class="mock-caption">A few of the kinds of sites we build — yours, designed around <em>your</em> business.</p>
       </div>
     </div>
   </section>
@@ -281,16 +353,34 @@
   <div class="verticals">
     <div class="wrap">
       <p class="lead">Built for the local businesses people count on</p>
-      <div class="vrow">
-        <span class="chip">Bakeries &amp; cafés</span>
-        <span class="chip">Dentists &amp; clinics</span>
-        <span class="chip">Salons &amp; spas</span>
-        <span class="chip">Contractors &amp; trades</span>
-        <span class="chip">Restaurants</span>
-        <span class="chip">Gyms &amp; studios</span>
-        <span class="chip">Shops &amp; boutiques</span>
-        <span class="chip">Real estate</span>
-        <span class="chip">Landscaping</span>
+      <div class="vtrack">
+        <div class="vmarquee">
+          <span class="chip">Bakeries &amp; cafés</span>
+          <span class="chip">Dentists &amp; clinics</span>
+          <span class="chip">Salons &amp; spas</span>
+          <span class="chip">Contractors &amp; trades</span>
+          <span class="chip">Restaurants</span>
+          <span class="chip">Gyms &amp; studios</span>
+          <span class="chip">Shops &amp; boutiques</span>
+          <span class="chip">Real estate</span>
+          <span class="chip">Landscaping</span>
+          <span class="chip">Coffee shops</span>
+          <span class="chip">Photographers</span>
+          <span class="chip">Auto &amp; repair</span>
+          <!-- duplicate set for a seamless loop -->
+          <span class="chip" aria-hidden="true">Bakeries &amp; cafés</span>
+          <span class="chip" aria-hidden="true">Dentists &amp; clinics</span>
+          <span class="chip" aria-hidden="true">Salons &amp; spas</span>
+          <span class="chip" aria-hidden="true">Contractors &amp; trades</span>
+          <span class="chip" aria-hidden="true">Restaurants</span>
+          <span class="chip" aria-hidden="true">Gyms &amp; studios</span>
+          <span class="chip" aria-hidden="true">Shops &amp; boutiques</span>
+          <span class="chip" aria-hidden="true">Real estate</span>
+          <span class="chip" aria-hidden="true">Landscaping</span>
+          <span class="chip" aria-hidden="true">Coffee shops</span>
+          <span class="chip" aria-hidden="true">Photographers</span>
+          <span class="chip" aria-hidden="true">Auto &amp; repair</span>
+        </div>
       </div>
     </div>
   </div>
@@ -303,7 +393,7 @@
         <h2>Three steps. You're only hands-on for the first one.</h2>
         <p>No blank page to stare at, no jargon, no project that drags on for months.</p>
       </div>
-      <div class="steps reveal">
+      <div class="steps stagger">
         <div class="step">
           <div class="num"></div>
           <h3>Tell us about your business</h3>
@@ -350,6 +440,73 @@
             <div><h3>Fair, simple pricing</h3><p>One price to build it, a low monthly to keep it running, and changes only when you actually want them.</p></div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECENT WORK / PORTFOLIO -->
+  <section id="work" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Recent work</span>
+        <h2>A few sites we've designed &amp; shipped.</h2>
+        <p>Real, live products — built end to end, from first idea to launch. Yours is next.</p>
+      </div>
+      <div class="workgrid stagger">
+
+        <a class="work" href="https://dogpoundacademy.vercel.app" target="_blank" rel="noopener">
+          <div class="work-shot"><span class="work-tag">Local business</span><img src="screens/dogpound.png" alt="Dog Pound Academy basketball training website" loading="lazy"></div>
+          <div class="work-body">
+            <h3>Dog Pound Academy</h3>
+            <p>Basketball training &amp; athletic mentorship in East Texas — bookings, packages, and a coach's story.</p>
+            <span class="work-link">Visit site →</span>
+          </div>
+        </a>
+
+        <a class="work" href="https://xandland.com" target="_blank" rel="noopener">
+          <div class="work-shot"><span class="work-tag">Platform</span><img src="screens/xandland.png" alt="Xandland filmmaker platform website" loading="lazy"></div>
+          <div class="work-body">
+            <h3>Xandland</h3>
+            <p>A full platform for indie filmmakers — tools, streaming, and community under one roof.</p>
+            <span class="work-link">Visit site →</span>
+          </div>
+        </a>
+
+        <a class="work" href="https://xleats.com" target="_blank" rel="noopener">
+          <div class="work-shot"><span class="work-tag">Marketplace app</span><img src="screens/xleats.png" alt="XLeats food-truck discovery app website" loading="lazy"></div>
+          <div class="work-body">
+            <h3>XLeats</h3>
+            <p>A two-sided food-truck discovery app with live status and owner dashboards.</p>
+            <span class="work-link">Visit site →</span>
+          </div>
+        </a>
+
+        <a class="work" href="https://xlcoverage.com" target="_blank" rel="noopener">
+          <div class="work-shot"><span class="work-tag">SaaS</span><img src="screens/xlcoverage.png" alt="XLCoverage AI screenplay coverage website" loading="lazy"></div>
+          <div class="work-body">
+            <h3>XLCoverage</h3>
+            <p>AI screenplay coverage that reads a script and grades it like a development exec, in minutes.</p>
+            <span class="work-link">Visit site →</span>
+          </div>
+        </a>
+
+        <a class="work" href="https://xlcourtside.com" target="_blank" rel="noopener">
+          <div class="work-shot"><span class="work-tag">Web app</span><img src="screens/xlcourtside.png" alt="XLCourtside tennis match scoring web app" loading="lazy"></div>
+          <div class="work-body">
+            <h3>XLCourtside</h3>
+            <p>Live tennis match scoring built for phones — configurable formats and stat tracking, courtside.</p>
+            <span class="work-link">Visit site →</span>
+          </div>
+        </a>
+
+        <a class="work cta-card" href="#start">
+          <div>
+            <h3>Your business, next.</h3>
+            <p>Tell us about it and we'll design a site that fits it — live in about a week.</p>
+            <span class="btn btn-honey">Start your site →</span>
+          </div>
+        </a>
+
       </div>
     </div>
   </section>
@@ -438,9 +595,59 @@
   </footer>
 
 <script>
-  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  // year
   document.getElementById('yr').textContent=new Date().getFullYear();
+
+  // reduced-motion guard
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // scroll-in reveals (+ staggered children on .stagger grids)
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting) return;
+      const el=e.target;
+      el.classList.add('in');
+      if(el.classList.contains('stagger')){
+        [...el.children].forEach((c,i)=>{c.style.transitionDelay=(i*80)+'ms';});
+      }
+      io.unobserve(el);
+    });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal,.stagger').forEach(el=>io.observe(el));
+
+  // sticky-nav shadow once the page scrolls
+  const nav=document.querySelector('.nav');
+  const onScroll=()=>{ nav.classList.toggle('scrolled', window.scrollY>8); };
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+
+  // signature browser-mock that cycles through business types
+  const presets=[
+    {url:'rosewoodbakery.com', logo:'Rosewood Bakery', tag:'Fresh daily · Since 2009', h:'Warm bread, better mornings.', p:'Handmade loaves, pastries & cakes — baked fresh every morning in the heart of town.', btn:'Order for pickup →',
+     v:{'--sn':'#7A3E2B','--acc':'#7A3E2B','--acc-soft':'#FBE7C2','--h':'#5A3320','--p':'#8A6A52','--tag':'#B06A3A','--sh-bg':'linear-gradient(160deg,#FDF6EC,#FBEAD4)'}},
+    {url:'brightsmiledental.com', logo:'Bright Smile Dental', tag:'Gentle care · New patients welcome', h:'Dentistry that feels easy.', p:'Modern, comfortable care for the whole family — book your visit online in minutes.', btn:'Book a visit →',
+     v:{'--sn':'#1F6F8B','--acc':'#1F6F8B','--acc-soft':'#D6ECF3','--h':'#123C4B','--p':'#5C7A85','--tag':'#2E8BA6','--sh-bg':'linear-gradient(160deg,#EAF6FA,#D6ECF3)'}},
+    {url:'lunahairstudio.com', logo:'Luna Hair Studio', tag:'Cuts · Color · Style', h:'Your best hair, every visit.', p:'A boutique studio for color, cuts, and care — walk out feeling brand new.', btn:'Book your chair →',
+     v:{'--sn':'#7A4E8B','--acc':'#7A4E8B','--acc-soft':'#EADAF5','--h':'#452a50','--p':'#7E6A88','--tag':'#9160A6','--sh-bg':'linear-gradient(160deg,#F5EEFB,#EADAF5)'}},
+    {url:'evergreenlawns.com', logo:'Evergreen Lawns', tag:'Lawn · Landscape · Care', h:"A yard you're proud of.", p:'Full-service lawn care and landscaping — reliable crews, tidy results, every week.', btn:'Get a free quote →',
+     v:{'--sn':'#2F6B3B','--acc':'#2F6B3B','--acc-soft':'#D2EBCE','--h':'#1F4A29','--p':'#5F7A62','--tag':'#3E8B4D','--sh-bg':'linear-gradient(160deg,#EDF6EC,#DCEFD9)'}}
+  ];
+  const mock=document.getElementById('mock');
+  if(mock && !reduce){
+    const content=document.getElementById('mkContent');
+    const el={url:document.getElementById('mkUrl'),logo:document.getElementById('mkLogo'),tag:document.getElementById('mkTag'),h:document.getElementById('mkH'),p:document.getElementById('mkP'),btn:document.getElementById('mkBtn')};
+    let i=0;
+    setInterval(()=>{
+      i=(i+1)%presets.length;
+      const pr=presets[i];
+      mock.classList.add('fading');
+      setTimeout(()=>{
+        el.url.textContent=pr.url; el.logo.textContent=pr.logo; el.tag.textContent=pr.tag;
+        el.h.textContent=pr.h; el.p.textContent=pr.p; el.btn.textContent=pr.btn;
+        for(const k in pr.v){ content.style.setProperty(k, pr.v[k]); }
+        mock.classList.remove('fading');
+      },400);
+    },3600);
+  }
 </script>
 </body>
 </html>

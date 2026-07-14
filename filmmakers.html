@@ -214,7 +214,8 @@
     font-size:clamp(1.4rem,3.4vw,2.1rem);color:rgba(236,230,217,.14);
     text-transform:uppercase;letter-spacing:.04em;
   }
-  .shot-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .shot-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+  .shot:hover .shot-frame img{transform:scale(1.05)}
   .shot-tc{
     position:absolute;top:10px;left:10px;z-index:2;
     font-family:'Space Mono',monospace;font-size:11px;color:var(--bone);
@@ -394,12 +395,12 @@
 
       <div class="reel-scroll reveal">
 
-        <!-- SHOT: swap the .placeholder block for <img src="screens/xandland.jpg" alt="Xandland"> -->
         <a class="shot" href="https://xandland.com" target="_blank" rel="noopener">
           <div class="shot-frame">
             <span class="shot-tc mono">TC 00:01:12:04</span>
             <span class="shot-live">LIVE</span>
             <div class="placeholder"><span class="ph-mark">Xandland</span></div>
+            <img src="screens/xandland.png" alt="Xandland — live site" loading="lazy">
           </div>
           <div class="shot-meta">
             <div>
@@ -415,6 +416,7 @@
             <span class="shot-tc mono">TC 00:02:44:18</span>
             <span class="shot-live">LIVE</span>
             <div class="placeholder"><span class="ph-mark">XLeats</span></div>
+            <img src="screens/xleats.png" alt="XLeats — live site" loading="lazy">
           </div>
           <div class="shot-meta">
             <div>
@@ -430,6 +432,7 @@
             <span class="shot-tc mono">TC 00:03:59:02</span>
             <span class="shot-live">LIVE</span>
             <div class="placeholder"><span class="ph-mark">XLCoverage</span></div>
+            <img src="screens/xlcoverage.png" alt="XLCoverage — live site" loading="lazy">
           </div>
           <div class="shot-meta">
             <div>
@@ -445,6 +448,7 @@
             <span class="shot-tc mono">TC 00:05:21:11</span>
             <span class="shot-live">LIVE</span>
             <div class="placeholder"><span class="ph-mark">XLCourtside</span></div>
+            <img src="screens/xlcourtside.png" alt="XLCourtside — live site" loading="lazy">
           </div>
           <div class="shot-meta">
             <div>
@@ -529,7 +533,7 @@
 
         <div class="card">
           <div class="c-label">The Build</div>
-          <div class="c-price">$999<span class="unit"> once</span></div>
+          <div class="c-price">$299<span class="unit"> once</span></div>
           <div class="c-note">Everything from intake to a live, done-for-you site.</div>
           <ul>
             <li>Guided onboarding + build</li>
@@ -542,7 +546,7 @@
 
         <div class="card feature">
           <div class="c-label">Care Plan</div>
-          <div class="c-price">$49<span class="unit"> / month</span></div>
+          <div class="c-price">$19<span class="unit"> / month</span></div>
           <div class="c-note">Hosting, security, backups, and small text tweaks — handled.</div>
           <ul>
             <li>Fast, secure hosting included</li>
@@ -555,7 +559,7 @@
 
         <div class="card">
           <div class="c-label">Changes</div>
-          <div class="c-price">$45<span class="unit"> / hour</span></div>
+          <div class="c-price">$25<span class="unit"> / hour</span></div>
           <div class="c-note">New sections, redesigns, features — on demand.</div>
           <ul>
             <li>Request from your account</li>

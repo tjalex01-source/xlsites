@@ -22,17 +22,23 @@ node server.js        # from the parent xlsites folder — serves ./repo on http
 
 ## Pricing (current, intro-level)
 
-- The Build — **$999** once
-- Care Plan — **$49** / month
-- Changes — **$45** / hour
+Business (`/`): Build **$999** once · Care **$49**/mo · Changes **$45**/hr
+Creatives (`/filmmakers`): Build **$299** once · Care **$19**/mo · Changes **$25**/hr
 
-Set low while establishing the portfolio; raise as samples accumulate.
+Set low while establishing the portfolio; raise as samples accumulate. Creatives priced lower on purpose (indie budgets; builds are fast once the onboarding app feeds Claude Code).
+
+## Screenshots
+
+Portfolio/reel thumbnails live in `screens/` (1200×900 PNGs, captured via thum.io). To refresh one:
+
+```
+curl -sL "https://image.thum.io/get/width/1200/crop/900/noanimate/https://SITE" -o screens/NAME.png
+```
 
 ## Still to do
 
-- Swap the reel's styled placeholder frames for real screenshots of each product (Xandland, XLeats, XLCoverage, XLCourtside).
-- Add a real headshot to the "Why a filmmaker" film-strip once available.
+- Add a real headshot to the "Why a filmmaker" film-strip once available (currently a styled slate).
 - Point the "Start your site" / "Begin onboarding" CTAs at the onboarding app once it's built (currently open a pre-filled email to tjalex@xandland.com).
-- Add `dogpoundacademy.com` to the reel once it's live.
+- Add `dogpoundacademy.com` to the portfolio/reel once the custom domain is attached (build is live at dogpoundacademy.vercel.app).
 
 Contact: tjalex@xandland.com
