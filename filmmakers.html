@@ -275,29 +275,29 @@
     font-size:clamp(1.3rem,3vw,2rem);color:var(--bone);line-height:1;margin-bottom:14px}
   .filmstrip .fs-sub{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted-dim);letter-spacing:.1em}
 
-  /* ---------- pricing ---------- */
-  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  /* ---------- pricing — one engagement, not a pick-one menu ---------- */
+  .price-flow{display:flex;align-items:stretch;justify-content:center;gap:0}
   .card{
-    border:1px solid var(--line);background:var(--panel);padding:34px 28px;
+    flex:1;border:1px solid var(--line);background:var(--panel);padding:30px 26px 32px;
     display:flex;flex-direction:column;position:relative;transition:transform .3s,border-color .3s;
   }
   .card:hover{transform:translateY(-4px);border-color:var(--steel)}
-  .card.feature{border-color:var(--amber)}
-  .card.feature::after{
-    content:"MOST PICK THIS";position:absolute;top:0;right:0;
-    font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;
-    background:var(--amber);color:#0C0F14;padding:4px 10px;
-  }
-  .card .c-label{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;color:var(--amber);text-transform:uppercase;margin-bottom:16px}
+  .card .c-when{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.12em;color:#0C0F14;background:var(--amber);text-transform:uppercase;padding:3px 9px;align-self:flex-start;margin-bottom:16px}
+  .card .c-label{font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.1rem;letter-spacing:.02em;color:var(--bone);margin-bottom:8px}
   .card .c-price{font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:800;font-size:2.4rem;line-height:1;margin-bottom:6px}
   .card .c-price .unit{font-family:'Space Mono',monospace;font-size:.9rem;color:var(--muted);font-weight:400}
-  .card .c-note{font-size:13.5px;color:var(--muted-dim);margin-bottom:24px;min-height:2.6em}
-  .card ul{list-style:none;margin-bottom:28px;flex:1}
+  .card .c-note{font-size:13.5px;color:var(--muted-dim);margin-bottom:22px;min-height:2.6em}
+  .card ul{list-style:none;margin-bottom:0;flex:1}
   .card li{font-size:14.5px;color:var(--muted);padding:9px 0;border-top:1px solid var(--line-soft);display:flex;gap:10px}
   .card li:first-child{border-top:none}
   .card li::before{content:"—";color:var(--amber);flex-shrink:0}
   .card li b{color:var(--bone);font-weight:600}
-  .price-fine{margin-top:24px;color:var(--muted-dim);font-size:13px;font-family:'Space Mono',monospace;text-align:center}
+  .plus{flex:0 0 auto;align-self:center;width:44px;text-align:center;font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:800;font-size:1.5rem;color:var(--amber)}
+  .price-sum{margin-top:22px;border:1px solid var(--amber);background:rgba(233,169,77,.06);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .price-sum p{font-size:14.5px;color:var(--bone);max-width:66ch}
+  .price-sum p b{color:var(--amber);font-weight:600}
+  .price-sum .btn{flex-shrink:0}
+  .price-fine{margin-top:22px;color:var(--muted-dim);font-size:13px;font-family:'Space Mono',monospace;text-align:center}
 
   /* ---------- final CTA ---------- */
   .cta-final{padding:120px 0;text-align:center;border-bottom:none}
@@ -321,7 +321,8 @@
     .why{grid-template-columns:1fr;gap:40px}
     .filmstrip{aspect-ratio:16/9;order:-1}
     .scenes{grid-template-columns:repeat(2,1fr)}
-    .price-grid{grid-template-columns:1fr}
+    .price-flow{flex-direction:column;max-width:460px;margin:0 auto}
+    .plus{width:auto;padding:6px 0}
     .nav-links{display:none}
   }
   @media(max-width:560px){
@@ -526,12 +527,13 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="eyebrow">SC.05 — THE DEAL</span>
-        <h2>Simple pricing</h2>
-        <p class="tag">One build fee to launch. A low monthly to keep the lights on. Changes billed only when you want them.</p>
+        <h2>How it all adds up</h2>
+        <p class="tag">Not a menu — one engagement. Build it once, keep it running monthly, hourly only for big changes.</p>
       </div>
-      <div class="price-grid reveal">
+      <div class="price-flow reveal">
 
         <div class="card">
+          <span class="c-when">01 · One-time</span>
           <div class="c-label">The Build</div>
           <div class="c-price">$299<span class="unit"> once</span></div>
           <div class="c-note">Everything from intake to a live, done-for-you site.</div>
@@ -541,35 +543,42 @@
             <li>Mobile-ready, fast, and yours</li>
             <li>Domain connected &amp; launched</li>
           </ul>
-          <a href="#start" class="btn btn-ghost">Start a build</a>
         </div>
 
-        <div class="card feature">
+        <div class="plus" aria-hidden="true">+</div>
+
+        <div class="card">
+          <span class="c-when">02 · Monthly</span>
           <div class="c-label">Care Plan</div>
           <div class="c-price">$19<span class="unit"> / month</span></div>
-          <div class="c-note">Hosting, security, backups, and small text tweaks — handled.</div>
+          <div class="c-note">Keeps your live site fast, secure, and current — hands-off for you.</div>
           <ul>
             <li>Fast, secure hosting included</li>
             <li>SSL, uptime &amp; backups</li>
             <li><b>Micro-edits included</b> each month</li>
             <li>Your account, always on</li>
           </ul>
-          <a href="#start" class="btn btn-solid">Choose care</a>
         </div>
 
+        <div class="plus" aria-hidden="true">+</div>
+
         <div class="card">
-          <div class="c-label">Changes</div>
+          <span class="c-when">As needed · Hourly</span>
+          <div class="c-label">Big Changes</div>
           <div class="c-price">$25<span class="unit"> / hour</span></div>
-          <div class="c-note">New sections, redesigns, features — on demand.</div>
+          <div class="c-note">Only for the big stuff — micro-edits are already in your Care Plan.</div>
           <ul>
-            <li>Request from your account</li>
+            <li>New sections, redesigns, features</li>
             <li>You get an estimate first</li>
             <li>You approve, then I build</li>
             <li><b>1-hour minimum</b>, no surprises</li>
           </ul>
-          <a href="#start" class="btn btn-ghost">See how it works</a>
         </div>
 
+      </div>
+      <div class="price-sum reveal">
+        <p>It's all <b>one account</b>: $299 to launch, $19/month to keep it running, and $25/hour only for major changes. Nothing to pick between.</p>
+        <a href="#start" class="btn btn-solid">Start your build →</a>
       </div>
       <p class="price-fine">No logo? Ask about the logo add-on during onboarding. · No contracts — cancel your Care Plan anytime.</p>
     </div>

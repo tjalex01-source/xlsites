@@ -215,22 +215,28 @@
   .val h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.18rem;margin-bottom:6px}
   .val p{color:#CFE2D6;font-size:15px}
 
-  /* pricing */
-  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-  .pcard{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px 30px;display:flex;flex-direction:column;position:relative;transition:transform .25s,box-shadow .25s}
+  /* pricing — one connected engagement, not a pick-one menu */
+  .price-flow{display:flex;align-items:stretch;justify-content:center;gap:0}
+  .pcard{flex:1;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px 28px 32px;display:flex;flex-direction:column;position:relative;transition:transform .25s,box-shadow .25s}
   .pcard:hover{transform:translateY(-4px);box-shadow:0 18px 44px -22px rgba(22,66,49,.4)}
-  .pcard.feature{border:2px solid var(--green);background:linear-gradient(180deg,#fff,var(--green-tint))}
-  .pcard.feature::after{content:"Most popular";position:absolute;top:-13px;left:30px;background:var(--honey);color:var(--ink);font-size:12px;font-weight:700;padding:5px 14px;border-radius:100px}
-  .pcard .pl{font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.06em;font-size:13px;margin-bottom:14px}
-  .pcard .pp{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:2.6rem;line-height:1;margin-bottom:6px}
+  .pcard .when{display:inline-block;align-self:flex-start;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--green);background:var(--green-tint);padding:4px 11px;border-radius:100px;margin-bottom:16px}
+  .pcard .pl{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.22rem;margin-bottom:8px}
+  .pcard .pp{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:2.5rem;line-height:1;margin-bottom:6px}
   .pcard .pp .u{font-family:'Hanken Grotesk';font-size:1rem;font-weight:500;color:var(--muted)}
-  .pcard .pn{color:var(--muted);font-size:14px;margin-bottom:22px;min-height:2.6em}
-  .pcard ul{list-style:none;margin-bottom:26px;flex:1}
+  .pcard .pn{color:var(--muted);font-size:14px;margin-bottom:20px;min-height:2.6em}
+  .pcard ul{list-style:none;margin-bottom:0;flex:1}
   .pcard li{font-size:15px;color:var(--ink-soft);padding:9px 0;border-top:1px solid var(--line);display:flex;gap:10px}
   .pcard li:first-child{border-top:none}
   .pcard li::before{content:"✓";color:var(--green);font-weight:800;flex-shrink:0}
   .pcard li b{color:var(--ink);font-weight:700}
-  .price-fine{text-align:center;color:var(--muted);font-size:14px;margin-top:26px}
+  /* the "+" connectors that show the parts add up */
+  .plus{flex:0 0 auto;align-self:center;width:46px;text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.6rem;color:var(--honey)}
+  /* summary bar tying it into one account */
+  .price-sum{margin-top:22px;background:var(--green);color:#fff;border-radius:16px;padding:22px 26px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .price-sum p{font-size:15.5px;color:#EAF3EC;max-width:64ch}
+  .price-sum p b{color:#fff;font-weight:700}
+  .price-sum .btn{flex-shrink:0}
+  .price-fine{text-align:center;color:var(--muted);font-size:14px;margin-top:22px}
 
   /* creatives cross-link */
   .cross{background:#181513;color:var(--paper);border-radius:24px;padding:52px 54px;display:flex;align-items:center;justify-content:space-between;gap:40px;position:relative;overflow:hidden}
@@ -261,7 +267,8 @@
     .steps{grid-template-columns:1fr}
     .vgrid{grid-template-columns:1fr}
     .values{padding:46px 32px}
-    .price-grid{grid-template-columns:1fr;max-width:460px;margin:0 auto}
+    .price-flow{flex-direction:column;max-width:460px;margin:0 auto}
+    .plus{width:auto;padding:8px 0}
     .cross{flex-direction:column;align-items:flex-start;padding:40px 32px}
     .workgrid{grid-template-columns:repeat(2,1fr)}
     .nav-links a:not(.creatives):not(.cta-link){display:none}
@@ -516,11 +523,12 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="eyebrow">Simple pricing</span>
-        <h2>You always know what you're paying.</h2>
-        <p>One build fee to launch. A low monthly to keep the lights on. Changes billed only when you ask.</p>
+        <h2>One build fee, then a little to keep it running.</h2>
+        <p>Not a menu to choose from — it's how the whole thing works together. You pay once to build it, a low monthly to host and maintain it, and by the hour only if you want bigger changes down the road.</p>
       </div>
-      <div class="price-grid reveal">
+      <div class="price-flow reveal">
         <div class="pcard">
+          <span class="when">Step 1 · One-time</span>
           <div class="pl">The Build</div>
           <div class="pp">$999<span class="u"> once</span></div>
           <div class="pn">Everything from your first answers to a live, done-for-you website.</div>
@@ -530,32 +538,37 @@
             <li>Looks great on phones</li>
             <li>Your domain connected &amp; launched</li>
           </ul>
-          <a href="#start" class="btn btn-ghost">Start a build</a>
         </div>
-        <div class="pcard feature">
+        <div class="plus" aria-hidden="true">+</div>
+        <div class="pcard">
+          <span class="when">Step 2 · Monthly</span>
           <div class="pl">Care Plan</div>
           <div class="pp">$49<span class="u"> / month</span></div>
-          <div class="pn">Hosting, security, backups, and small text edits — all handled.</div>
+          <div class="pn">Keeps your live site fast, secure, and up to date — hands-off for you.</div>
           <ul>
             <li>Fast, secure hosting included</li>
             <li>Backups &amp; uptime handled</li>
             <li><b>Small edits included</b> each month</li>
             <li>Your account, always on</li>
           </ul>
-          <a href="#start" class="btn btn-primary">Choose care</a>
         </div>
+        <div class="plus" aria-hidden="true">+</div>
         <div class="pcard">
-          <div class="pl">Changes</div>
+          <span class="when">As needed · Hourly</span>
+          <div class="pl">Big Changes</div>
           <div class="pp">$45<span class="u"> / hour</span></div>
-          <div class="pn">New pages, redesigns, features — whenever you want them.</div>
+          <div class="pn">Only for the big stuff — small edits are already in your Care Plan.</div>
           <ul>
-            <li>Request right from your account</li>
+            <li>New pages, redesigns, features</li>
             <li>You get an estimate first</li>
             <li>You approve, then we build</li>
             <li><b>1-hour minimum</b>, no surprises</li>
           </ul>
-          <a href="#start" class="btn btn-ghost">How changes work</a>
         </div>
+      </div>
+      <div class="price-sum reveal">
+        <p>It's all <b>one account</b>: $999 to launch, $49/month to keep it running, and $45/hour only when you want major changes. No tiers to pick between.</p>
+        <a href="#start" class="btn btn-honey">Start your site →</a>
       </div>
       <p class="price-fine">No logo yet? Ask about the logo add-on during onboarding. · No contracts — cancel your Care Plan anytime.</p>
     </div>
