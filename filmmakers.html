@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>XLSites for Creatives — Showcase sites for actors, filmmakers & artists</title>
+<meta name="description" content="Done-for-you websites with a filmmaker's eye. Structured onboarding, a working prototype in days, hosting and care handled." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Expanded:wght@600;700;800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0C0F14;
+    --bg-lift:#131922;
+    --panel:#181F29;
+    --line:#28313D;
+    --line-soft:#1F2733;
+    --amber:#E9A94D;
+    --amber-bright:#F4C06B;
+    --steel:#6E8CA0;
+    --bone:#ECE6D9;
+    --muted:#8A94A0;
+    --muted-dim:#5E6874;
+    --maxw:1180px;
+    --frame:2.39;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--bone);
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--amber);color:#0C0F14}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+  .mono{font-family:'Space Mono',monospace}
+  .eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--amber);
+  }
+  .eyebrow .dim{color:var(--muted-dim)}
+
+  .display{
+    font-family:'Archivo Expanded','Archivo',sans-serif;
+    font-weight:800;
+    text-transform:uppercase;
+    line-height:.98;
+    letter-spacing:.005em;
+  }
+
+  /* ---------- letterbox top bar ---------- */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    height:52px;
+    background:rgba(9,12,16,.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-soft);
+    display:flex;align-items:center;
+    transform:translateY(-100%);
+    transition:transform .7s cubic-bezier(.16,1,.3,1) .15s;
+  }
+  body.rolled .topbar{transform:translateY(0)}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;width:100%}
+  .brand{
+    font-family:'Archivo Expanded','Archivo',sans-serif;
+    font-weight:800;letter-spacing:.08em;font-size:15px;
+    display:flex;align-items:center;gap:9px;
+  }
+  .brand .dot{
+    width:8px;height:8px;border-radius:50%;background:#E5484D;
+    box-shadow:0 0 0 0 rgba(229,72,77,.6);
+    animation:rec 2s infinite;
+  }
+  @keyframes rec{
+    0%{box-shadow:0 0 0 0 rgba(229,72,77,.5)}
+    70%{box-shadow:0 0 0 7px rgba(229,72,77,0)}
+    100%{box-shadow:0 0 0 0 rgba(229,72,77,0)}
+  }
+  .nav{display:flex;align-items:center;gap:30px}
+  .nav a{font-size:13px;color:var(--muted);letter-spacing:.02em;transition:color .2s}
+  .nav a:hover{color:var(--bone)}
+  .tc{font-family:'Space Mono',monospace;font-size:12px;color:var(--muted-dim);letter-spacing:.05em}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .btn{
+    font-family:'Space Mono',monospace;
+    font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+    padding:9px 16px;border:1px solid var(--amber);color:var(--amber);
+    border-radius:2px;transition:all .2s;white-space:nowrap;
+  }
+  .btn:hover{background:var(--amber);color:#0C0F14}
+  .btn-solid{background:var(--amber);color:#0C0F14;border-color:var(--amber)}
+  .btn-solid:hover{background:var(--amber-bright);border-color:var(--amber-bright)}
+  .btn-ghost{border-color:var(--line);color:var(--muted)}
+  .btn-ghost:hover{background:transparent;border-color:var(--bone);color:var(--bone)}
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100vh;display:flex;align-items:center;
+    position:relative;padding:110px 0 70px;
+    border-bottom:1px solid var(--line-soft);
+    overflow:hidden;
+  }
+  .hero-grid{
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(var(--line-soft) 1px,transparent 1px),
+      linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);
+    background-size:64px 64px;
+    opacity:.28;
+    mask-image:radial-gradient(ellipse 80% 70% at 30% 40%,#000 30%,transparent 78%);
+    -webkit-mask-image:radial-gradient(ellipse 80% 70% at 30% 40%,#000 30%,transparent 78%);
+  }
+  .hero-glow{
+    position:absolute;top:-15%;right:-5%;width:60vw;height:60vw;max-width:720px;max-height:720px;
+    background:radial-gradient(circle,rgba(233,169,77,.16),transparent 62%);
+    pointer-events:none;filter:blur(6px);
+  }
+  .hero .wrap{position:relative;z-index:2;width:100%}
+  .hero-slate{
+    display:flex;gap:16px;align-items:center;margin-bottom:26px;
+    opacity:0;transform:translateY(12px);
+    animation:rise .8s cubic-bezier(.16,1,.3,1) .45s forwards;
+  }
+  .hero-slate .bars{
+    width:52px;height:20px;
+    background:repeating-linear-gradient(115deg,var(--bone) 0 8px,#0C0F14 8px 16px);
+    border:1px solid var(--muted-dim);
+  }
+  h1.hero-title{
+    font-size:clamp(2.6rem,8.5vw,6.4rem);
+    max-width:15ch;margin-bottom:28px;
+  }
+  h1 .line{display:block;overflow:hidden}
+  h1 .line span{
+    display:block;transform:translateY(105%);
+    animation:rise .9s cubic-bezier(.16,1,.3,1) forwards;
+  }
+  h1 .line:nth-child(1) span{animation-delay:.5s}
+  h1 .line:nth-child(2) span{animation-delay:.62s}
+  h1 .line:nth-child(3) span{animation-delay:.74s}
+  h1 .amber{color:var(--amber)}
+  .hero-sub{
+    font-size:clamp(1.05rem,2.2vw,1.32rem);
+    color:var(--muted);max-width:44ch;margin-bottom:40px;
+    opacity:0;animation:fade 1s ease .95s forwards;
+  }
+  .hero-sub b{color:var(--bone);font-weight:600}
+  .hero-cta{
+    display:flex;gap:14px;flex-wrap:wrap;align-items:center;
+    opacity:0;animation:fade 1s ease 1.1s forwards;
+  }
+  .hero-cta .btn{padding:14px 24px;font-size:13px}
+
+  @keyframes rise{to{transform:translateY(0);opacity:1}}
+  @keyframes fade{to{opacity:1}}
+
+  /* viewfinder brackets */
+  .vf{position:relative}
+  .vf::before,.vf::after{
+    content:"";position:absolute;width:22px;height:22px;pointer-events:none;
+  }
+  .vf::before{top:-14px;left:-14px;border-top:2px solid var(--amber);border-left:2px solid var(--amber)}
+  .vf::after{bottom:-14px;right:-14px;border-bottom:2px solid var(--amber);border-right:2px solid var(--amber)}
+
+  /* ---------- section scaffold ---------- */
+  section{padding:100px 0;border-bottom:1px solid var(--line-soft);position:relative}
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:56px;flex-wrap:wrap}
+  .sec-head h2{
+    font-family:'Archivo Expanded','Archivo',sans-serif;
+    font-weight:700;text-transform:uppercase;
+    font-size:clamp(1.7rem,4vw,2.7rem);line-height:1;letter-spacing:.01em;
+  }
+  .sec-head .tag{color:var(--muted);font-size:15px;max-width:38ch}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- the reel ---------- */
+  .reel-scroll{
+    display:grid;grid-auto-flow:column;grid-auto-columns:min(78vw,420px);
+    gap:22px;overflow-x:auto;padding:6px 4px 30px;
+    scroll-snap-type:x mandatory;
+    scrollbar-color:var(--line) transparent;
+  }
+  .reel-scroll::-webkit-scrollbar{height:6px}
+  .reel-scroll::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
+  .shot{scroll-snap-align:start}
+  .shot-frame{
+    position:relative;aspect-ratio:var(--frame)/1;
+    background:var(--bg-lift);border:1px solid var(--line);
+    overflow:hidden;transition:border-color .3s;
+  }
+  .shot:hover .shot-frame{border-color:var(--amber)}
+  .shot-frame .placeholder{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    background:
+      radial-gradient(circle at 30% 20%,rgba(233,169,77,.10),transparent 55%),
+      linear-gradient(160deg,#1A2230,#0F141C);
+    color:var(--muted-dim);
+  }
+  .shot-frame .ph-mark{
+    font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:800;
+    font-size:clamp(1.4rem,3.4vw,2.1rem);color:rgba(236,230,217,.14);
+    text-transform:uppercase;letter-spacing:.04em;
+  }
+  .shot-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .shot-tc{
+    position:absolute;top:10px;left:10px;z-index:2;
+    font-family:'Space Mono',monospace;font-size:11px;color:var(--bone);
+    background:rgba(9,12,16,.66);padding:3px 7px;letter-spacing:.05em;
+  }
+  .shot-live{
+    position:absolute;top:10px;right:10px;z-index:2;
+    font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;
+    color:var(--amber);background:rgba(9,12,16,.66);padding:3px 7px;text-transform:uppercase;
+  }
+  .shot-meta{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:16px 2px 0}
+  .shot-meta h3{
+    font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:700;
+    text-transform:uppercase;font-size:1.05rem;letter-spacing:.02em;margin-bottom:4px;
+  }
+  .shot-meta p{font-size:13.5px;color:var(--muted);line-height:1.45}
+  .shot-link{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted-dim);white-space:nowrap;transition:color .2s}
+  .shot:hover .shot-link{color:var(--amber)}
+  .reel-note{margin-top:8px;color:var(--muted-dim);font-size:13px;font-family:'Space Mono',monospace}
+
+  /* ---------- process / scenes ---------- */
+  .scenes{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-soft);border:1px solid var(--line-soft)}
+  .scene{background:var(--bg);padding:32px 26px;position:relative;transition:background .3s}
+  .scene:hover{background:var(--bg-lift)}
+  .scene .sc-no{font-family:'Space Mono',monospace;font-size:12px;color:var(--amber);letter-spacing:.14em;margin-bottom:auto}
+  .scene .sc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:34px}
+  .scene .sc-dur{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted-dim)}
+  .scene h3{
+    font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:700;text-transform:uppercase;
+    font-size:1.15rem;margin-bottom:12px;line-height:1.05;
+  }
+  .scene p{font-size:14px;color:var(--muted);line-height:1.5}
+
+  /* ---------- why me ---------- */
+  .why{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+  .why-copy p{color:var(--muted);margin-bottom:20px;font-size:1.06rem}
+  .why-copy p b{color:var(--bone);font-weight:600}
+  .why-copy .lead{font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:600;text-transform:uppercase;
+    font-size:clamp(1.3rem,2.6vw,1.9rem);line-height:1.1;color:var(--bone);margin-bottom:26px;letter-spacing:.01em}
+  .why-copy .lead em{color:var(--amber);font-style:normal}
+  .filmstrip{
+    aspect-ratio:3/4;background:var(--bg-lift);border:1px solid var(--line);
+    position:relative;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .filmstrip::before,.filmstrip::after{
+    content:"";position:absolute;top:0;bottom:0;width:26px;
+    background:repeating-linear-gradient(180deg,transparent 0 12px,#0C0F14 12px 14px,transparent 14px 26px),var(--bg);
+    border-right:1px solid var(--line);border-left:1px solid var(--line);
+  }
+  .filmstrip::before{left:0}
+  .filmstrip::after{right:0;border-left:1px solid var(--line);border-right:none}
+  .filmstrip .fs-inner{
+    text-align:center;padding:0 40px;z-index:2;
+  }
+  .filmstrip .fs-mark{font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:800;text-transform:uppercase;
+    font-size:clamp(1.3rem,3vw,2rem);color:var(--bone);line-height:1;margin-bottom:14px}
+  .filmstrip .fs-sub{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted-dim);letter-spacing:.1em}
+
+  /* ---------- pricing ---------- */
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .card{
+    border:1px solid var(--line);background:var(--panel);padding:34px 28px;
+    display:flex;flex-direction:column;position:relative;transition:transform .3s,border-color .3s;
+  }
+  .card:hover{transform:translateY(-4px);border-color:var(--steel)}
+  .card.feature{border-color:var(--amber)}
+  .card.feature::after{
+    content:"MOST PICK THIS";position:absolute;top:0;right:0;
+    font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;
+    background:var(--amber);color:#0C0F14;padding:4px 10px;
+  }
+  .card .c-label{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;color:var(--amber);text-transform:uppercase;margin-bottom:16px}
+  .card .c-price{font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:800;font-size:2.4rem;line-height:1;margin-bottom:6px}
+  .card .c-price .unit{font-family:'Space Mono',monospace;font-size:.9rem;color:var(--muted);font-weight:400}
+  .card .c-note{font-size:13.5px;color:var(--muted-dim);margin-bottom:24px;min-height:2.6em}
+  .card ul{list-style:none;margin-bottom:28px;flex:1}
+  .card li{font-size:14.5px;color:var(--muted);padding:9px 0;border-top:1px solid var(--line-soft);display:flex;gap:10px}
+  .card li:first-child{border-top:none}
+  .card li::before{content:"—";color:var(--amber);flex-shrink:0}
+  .card li b{color:var(--bone);font-weight:600}
+  .price-fine{margin-top:24px;color:var(--muted-dim);font-size:13px;font-family:'Space Mono',monospace;text-align:center}
+
+  /* ---------- final CTA ---------- */
+  .cta-final{padding:120px 0;text-align:center;border-bottom:none}
+  .cta-final .eyebrow{margin-bottom:22px;display:block}
+  .cta-final h2{
+    font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:800;text-transform:uppercase;
+    font-size:clamp(2rem,6vw,4rem);line-height:1;margin-bottom:24px;
+  }
+  .cta-final p{color:var(--muted);max-width:46ch;margin:0 auto 40px;font-size:1.1rem}
+  .cta-final .btn{padding:16px 34px;font-size:14px}
+
+  /* ---------- footer ---------- */
+  footer{padding:44px 0;color:var(--muted-dim);font-size:13px}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  footer .mono{font-size:12px}
+  footer a{color:var(--muted);transition:color .2s}
+  footer a:hover{color:var(--amber)}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:900px){
+    .why{grid-template-columns:1fr;gap:40px}
+    .filmstrip{aspect-ratio:16/9;order:-1}
+    .scenes{grid-template-columns:repeat(2,1fr)}
+    .price-grid{grid-template-columns:1fr}
+    .nav-links{display:none}
+  }
+  @media(max-width:560px){
+    body{font-size:16px}
+    .wrap{padding:0 20px}
+    section{padding:72px 0}
+    .scenes{grid-template-columns:1fr}
+    .topbar .tc{display:none}
+    .hero-slate .bars{display:none}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    h1 .line span{transform:none;opacity:1}
+    .hero-slate,.hero-sub,.hero-cta{opacity:1;transform:none}
+    body.rolled .topbar,.topbar{transform:none}
+    .reveal{opacity:1;transform:none}
+  }
+  :focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+</style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="wrap">
+      <a href="#top" class="brand"><span class="dot"></span>XLSites</a>
+      <nav class="nav">
+        <div class="nav-links">
+          <a href="#reel">The Reel</a>
+          <a href="#process">Process</a>
+          <a href="#pricing">Pricing</a>
+          <a href="/">For businesses ↗</a>
+        </div>
+        <span class="tc" id="tc">00:00:00:00</span>
+        <a href="#start" class="btn btn-solid">Start your build</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="wrap">
+      <div class="hero-slate">
+        <div class="bars"></div>
+        <span class="eyebrow">SC.01 — COLD OPEN <span class="dim">/ ROLL 001</span></span>
+      </div>
+      <h1 class="display hero-title">
+        <span class="line"><span>Your work,</span></span>
+        <span class="line"><span>framed like it</span></span>
+        <span class="line"><span class="amber">matters.</span></span>
+      </h1>
+      <p class="hero-sub">Showcase sites for actors, filmmakers, and artists — built with a filmmaker's eye. You answer a few guided questions, I compose the whole thing, and you get a <b>working site in days</b>. A portfolio that finally does your reel justice.</p>
+      <div class="hero-cta">
+        <a href="#start" class="btn btn-solid vf">Start your build</a>
+        <a href="#reel" class="btn btn-ghost">See the reel</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE REEL -->
+  <section id="reel">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">SC.02 — THE REEL</span>
+        <h2>Selected work</h2>
+        <p class="tag">Real products, shipped end to end — design, build, and launch.</p>
+      </div>
+
+      <div class="reel-scroll reveal">
+
+        <!-- SHOT: swap the .placeholder block for <img src="screens/xandland.jpg" alt="Xandland"> -->
+        <a class="shot" href="https://xandland.com" target="_blank" rel="noopener">
+          <div class="shot-frame">
+            <span class="shot-tc mono">TC 00:01:12:04</span>
+            <span class="shot-live">LIVE</span>
+            <div class="placeholder"><span class="ph-mark">Xandland</span></div>
+          </div>
+          <div class="shot-meta">
+            <div>
+              <h3>Xandland</h3>
+              <p>A full platform for indie filmmakers — tools, coverage, and community under one roof.</p>
+            </div>
+            <span class="shot-link">↗ xandland.com</span>
+          </div>
+        </a>
+
+        <a class="shot" href="https://xleats.com" target="_blank" rel="noopener">
+          <div class="shot-frame">
+            <span class="shot-tc mono">TC 00:02:44:18</span>
+            <span class="shot-live">LIVE</span>
+            <div class="placeholder"><span class="ph-mark">XLeats</span></div>
+          </div>
+          <div class="shot-meta">
+            <div>
+              <h3>XLeats</h3>
+              <p>Two-sided food-truck discovery app with live status and owner dashboards.</p>
+            </div>
+            <span class="shot-link">↗ xleats.com</span>
+          </div>
+        </a>
+
+        <a class="shot" href="https://xlcoverage.com" target="_blank" rel="noopener">
+          <div class="shot-frame">
+            <span class="shot-tc mono">TC 00:03:59:02</span>
+            <span class="shot-live">LIVE</span>
+            <div class="placeholder"><span class="ph-mark">XLCoverage</span></div>
+          </div>
+          <div class="shot-meta">
+            <div>
+              <h3>XLCoverage</h3>
+              <p>AI screenplay coverage — several top models read your script and grade it like a development exec, in minutes.</p>
+            </div>
+            <span class="shot-link">↗ xlcoverage.com</span>
+          </div>
+        </a>
+
+        <a class="shot" href="https://xlcourtside.com" target="_blank" rel="noopener">
+          <div class="shot-frame">
+            <span class="shot-tc mono">TC 00:05:21:11</span>
+            <span class="shot-live">LIVE</span>
+            <div class="placeholder"><span class="ph-mark">XLCourtside</span></div>
+          </div>
+          <div class="shot-meta">
+            <div>
+              <h3>XLCourtside</h3>
+              <p>Live tennis match scoring built for phones — configurable formats and stat tracking, courtside in one tap.</p>
+            </div>
+            <span class="shot-link">↗ xlcourtside.com</span>
+          </div>
+        </a>
+
+      </div>
+      <p class="reel-note">→ drag to scroll the reel</p>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">SC.03 — PRODUCTION</span>
+        <h2>How a build runs</h2>
+        <p class="tag">Four scenes, start to live. You're only hands-on for the first one.</p>
+      </div>
+      <div class="scenes reveal">
+        <div class="scene">
+          <div class="sc-top"><span class="sc-no">SC.01</span><span class="sc-dur">~20 MIN</span></div>
+          <h3>Onboarding</h3>
+          <p>A guided intake walks you through every section of your site, collects your photos and logo, and pulls in your current links. No blank page, no guesswork.</p>
+        </div>
+        <div class="scene">
+          <div class="sc-top"><span class="sc-no">SC.02</span><span class="sc-dur">2–4 DAYS</span></div>
+          <h3>First cut</h3>
+          <p>I take your intake and compose a working prototype you can click through — real layout, real copy, your brand. We refine from something, not nothing.</p>
+        </div>
+        <div class="scene">
+          <div class="sc-top"><span class="sc-no">SC.03</span><span class="sc-dur">LAUNCH</span></div>
+          <h3>Final cut</h3>
+          <p>We lock the edit, connect your domain, and go live on fast, secure hosting. You get an account to log into from day one.</p>
+        </div>
+        <div class="scene">
+          <div class="sc-top"><span class="sc-no">SC.04</span><span class="sc-dur">ONGOING</span></div>
+          <h3>Care &amp; changes</h3>
+          <p>Hosting and small tweaks are handled monthly. Bigger changes go through your account — you request, I estimate, you approve, I ship.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY ME -->
+  <section id="why">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">SC.04 — DIRECTOR'S NOTE</span>
+        <h2>Why a filmmaker</h2>
+      </div>
+      <div class="why reveal">
+        <div class="why-copy">
+          <p class="lead">Most websites are <em>assembled</em>. Yours should be <em>directed</em>.</p>
+          <p>I've spent years on set and in the edit bay — composing shots, cutting for pace, deciding what the eye lands on first and what it earns later. <b>That's the same job as a homepage.</b></p>
+          <p>The AI tools I build with let me move fast. But speed isn't the pitch — <b>taste is.</b> Anyone can generate a site now. Fewer people can tell you why the current one isn't converting, then fix the story it's telling.</p>
+          <p>So you get both: a build that lands in days, and a set of eyes that have framed a thousand shots deciding where yours should point.</p>
+        </div>
+        <div class="filmstrip vf">
+          <div class="fs-inner">
+            <div class="fs-mark">Directed,<br>not templated</div>
+            <div class="fs-sub">A XANDLAND FILMS PRODUCTION</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">SC.05 — THE DEAL</span>
+        <h2>Simple pricing</h2>
+        <p class="tag">One build fee to launch. A low monthly to keep the lights on. Changes billed only when you want them.</p>
+      </div>
+      <div class="price-grid reveal">
+
+        <div class="card">
+          <div class="c-label">The Build</div>
+          <div class="c-price">$999<span class="unit"> once</span></div>
+          <div class="c-note">Everything from intake to a live, done-for-you site.</div>
+          <ul>
+            <li>Guided onboarding + build</li>
+            <li>Working prototype in days</li>
+            <li>Mobile-ready, fast, and yours</li>
+            <li>Domain connected &amp; launched</li>
+          </ul>
+          <a href="#start" class="btn btn-ghost">Start a build</a>
+        </div>
+
+        <div class="card feature">
+          <div class="c-label">Care Plan</div>
+          <div class="c-price">$49<span class="unit"> / month</span></div>
+          <div class="c-note">Hosting, security, backups, and small text tweaks — handled.</div>
+          <ul>
+            <li>Fast, secure hosting included</li>
+            <li>SSL, uptime &amp; backups</li>
+            <li><b>Micro-edits included</b> each month</li>
+            <li>Your account, always on</li>
+          </ul>
+          <a href="#start" class="btn btn-solid">Choose care</a>
+        </div>
+
+        <div class="card">
+          <div class="c-label">Changes</div>
+          <div class="c-price">$45<span class="unit"> / hour</span></div>
+          <div class="c-note">New sections, redesigns, features — on demand.</div>
+          <ul>
+            <li>Request from your account</li>
+            <li>You get an estimate first</li>
+            <li>You approve, then I build</li>
+            <li><b>1-hour minimum</b>, no surprises</li>
+          </ul>
+          <a href="#start" class="btn btn-ghost">See how it works</a>
+        </div>
+
+      </div>
+      <p class="price-fine">No logo? Ask about the logo add-on during onboarding. · No contracts — cancel your Care Plan anytime.</p>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta-final" id="start">
+    <div class="wrap">
+      <span class="eyebrow">SC.06 — ACTION</span>
+      <h2 class="display">Let's roll.</h2>
+      <p>Start the onboarding whenever you're ready. Twenty minutes of questions on your end, a working site on mine.</p>
+      <a href="mailto:tjalex@xandland.com?subject=Let%27s%20build%20my%20creative%20site" class="btn btn-solid vf">Begin onboarding →</a>
+      <p class="price-fine" style="margin-top:26px">Prefer email? Reach me anytime at <a href="mailto:tjalex@xandland.com">tjalex@xandland.com</a>.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span class="brand"><span class="dot"></span>XLSites</span>
+      <span class="mono">© <span id="yr"></span> · A filmmaker who builds websites · <a href="mailto:tjalex@xandland.com">tjalex@xandland.com</a></span>
+      <span class="mono">SHOT ON THE WEB</span>
+    </div>
+  </footer>
+
+<script>
+  // roll in top bar
+  window.addEventListener('load',()=>{document.body.classList.add('rolled')});
+
+  // live timecode 00:00:00:00 (hh:mm:ss:ff @ 24fps)
+  const tcEl=document.getElementById('tc');
+  const start=Date.now();
+  function tick(){
+    const t=(Date.now()-start)/1000;
+    const h=String(Math.floor(t/3600)%24).padStart(2,'0');
+    const m=String(Math.floor(t/60)%60).padStart(2,'0');
+    const s=String(Math.floor(t)%60).padStart(2,'0');
+    const f=String(Math.floor((t%1)*24)).padStart(2,'0');
+    if(tcEl) tcEl.textContent=`${h}:${m}:${s}:${f}`;
+    requestAnimationFrame(tick);
+  }
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){tick();}
+  else if(tcEl){tcEl.textContent='00:00:00:00';}
+
+  // scroll reveals
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+  },{threshold:.16});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // year
+  document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
