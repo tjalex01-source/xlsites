@@ -69,11 +69,10 @@
   .nav-links a:not(.btn)::after{content:"";position:absolute;left:0;right:100%;bottom:-5px;height:2px;background:var(--green);border-radius:2px;transition:right .28s cubic-bezier(.16,1,.3,1)}
   .nav-links a:not(.btn):hover{color:var(--ink)}
   .nav-links a:not(.btn):hover::after{right:0}
-  .nav-links a.creatives{color:var(--green)}
-  .nav-links a.creatives::after{background:var(--honey)}
+  .nav-links a.btn-film{color:var(--green);border-color:var(--green);background:transparent;padding:9px 20px;font-size:14px}
+  .nav-links a.btn-film::after{display:none}
+  .nav-links a.btn-film:hover{background:var(--green);color:#fff;transform:translateY(-1px)}
   /* the header CTA — force legible white-on-green (was inheriting dark link colour) */
-  .nav-links a.cta-link{color:#fff;font-weight:700;padding:11px 22px;box-shadow:0 8px 20px -8px rgba(30,91,68,.7)}
-  .nav-links a.cta-link:hover{color:#fff;background:var(--green-deep);transform:translateY(-1px)}
 
   /* ---------- hero ---------- */
   .hero{padding:76px 0 90px;position:relative;overflow:hidden}
@@ -244,7 +243,7 @@
   .fn{color:inherit;text-decoration:none;font-weight:700;vertical-align:super;font-size:0.8em}
   #domain-note:target{background:var(--honey-soft,#fbe7c2);border-radius:8px;padding:6px 10px}
 
-  /* creatives cross-link */
+  /* filmmakers cross-link */
   .cross{background:#181513;color:var(--paper);border-radius:24px;padding:52px 54px;display:flex;align-items:center;justify-content:space-between;gap:40px;position:relative;overflow:hidden}
   .cross::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(239,166,55,.06) 0 2px,transparent 2px 60px);pointer-events:none}
   .cross .cx-copy{position:relative;max-width:52ch}
@@ -278,7 +277,7 @@
     .plus{width:auto;padding:8px 0}
     .cross{flex-direction:column;align-items:flex-start;padding:40px 32px}
     .workgrid{grid-template-columns:repeat(2,1fr)}
-    .nav-links a:not(.creatives):not(.cta-link){display:none}
+    .nav-links a:not(.btn-film){display:none}
   }
   @media(max-width:560px){
     body{font-size:16px}
@@ -308,8 +307,7 @@
       <div class="nav-links">
         <a href="#how">How it works</a>
         <a href="#pricing">Pricing</a>
-        <a href="/filmmakers" class="creatives">For creatives ↗</a>
-        <a href="#start" class="btn btn-primary cta-link">Start your site</a>
+        <a href="/filmmakers" class="btn btn-film">For Filmmakers</a>
       </div>
     </div>
   </nav>
@@ -592,7 +590,7 @@
           <h2>We build showcase sites with a cinematic edge.</h2>
           <p>Portfolios and reels for creative work, designed by a filmmaker who knows how your work should be framed.</p>
         </div>
-        <a href="/filmmakers" class="btn btn-honey">See XLSites for Creatives →</a>
+        <a href="/filmmakers" class="btn btn-honey">See XLSites for Filmmakers →</a>
       </div>
     </div>
   </section>
@@ -615,7 +613,7 @@
       <nav class="foot-links">
         <a href="/terms">Terms</a>
         <a href="/privacy">Privacy</a>
-        <a href="/filmmakers">For creatives ↗</a>
+        <a href="/filmmakers">For filmmakers ↗</a>
       </nav>
     </div>
   </footer>
