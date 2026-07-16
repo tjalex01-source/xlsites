@@ -241,6 +241,8 @@
   .price-sum p b{color:#fff;font-weight:700}
   .price-sum .btn{flex-shrink:0}
   .price-fine{text-align:center;color:var(--muted);font-size:14px;margin-top:22px}
+  .fn{color:inherit;text-decoration:none;font-weight:700;vertical-align:super;font-size:0.8em}
+  #domain-note:target{background:var(--honey-soft,#fbe7c2);border-radius:8px;padding:6px 10px}
 
   /* creatives cross-link */
   .cross{background:#181513;color:var(--paper);border-radius:24px;padding:52px 54px;display:flex;align-items:center;justify-content:space-between;gap:40px;position:relative;overflow:hidden}
@@ -574,10 +576,10 @@
         </div>
       </div>
       <div class="price-sum reveal">
-        <p>It's all <b>one account</b>: $999 to launch — <b>a free domain included</b> — then $49/month to keep it running, and $45/hour only when you want major changes. No tiers to pick between.</p>
+        <p>It's all <b>one account</b>: $999 to launch — <b>a free domain included<a href="#domain-note" class="fn">*</a></b> — then $49/month to keep it running, and $45/hour only when you want major changes. No tiers to pick between.</p>
         <a href="#start" class="btn btn-honey">Start your site →</a>
       </div>
-      <p class="price-fine">No logo yet? Ask about the logo add-on during onboarding. · No contracts — cancel your Care Plan anytime. · Every build is subject to our <a href="/terms" style="color:var(--green);font-weight:600">Terms</a> &amp; <a href="/privacy" style="color:var(--green);font-weight:600">Privacy Policy</a>, which you'll confirm at checkout.</p>
+      <p class="price-fine" id="domain-note"><b>*</b> The free domain covers one standard domain name (like a <b>.com</b>), subject to availability. Premium, auction, or already-owned domains aren't included — though we'll happily connect one you already own. · No logo yet? Ask about the logo add-on during onboarding. · No contracts — cancel your Care Plan anytime. · Every build is subject to our <a href="/terms" style="color:var(--green);font-weight:600">Terms</a> &amp; <a href="/privacy" style="color:var(--green);font-weight:600">Privacy Policy</a>, which you'll confirm at checkout.</p>
     </div>
   </section>
 
