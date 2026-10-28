@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Author Websites — Enter your ISBN, get your site | XLSites</title>
+<meta name="description" content="Author websites built from a single ISBN. Your cover, blurb and buy links on a finished-looking site in seconds — every book, newsletter sign-up, and a free domain. Coming soon from XLSites and XLWrite.">
+<meta property="og:title" content="Author Websites from one ISBN — XLSites">
+<meta property="og:description" content="Enter your ISBN. Your author site appears. Coming soon.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F4EDE1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4EDE1; --paper-deep:#EAE0D0; --card:#FBF7F0; --line:#DDD0BC;
+    --ink:#2A211B; --ink-soft:#4A3F36; --muted:#6E6157;
+    --rose:#D9475F; --rose-deep:#B8364C; --rose-wash:rgba(217,71,95,.08);
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  .serif{font-family:'Fraunces',Georgia,serif}
+  .mono{font-family:'Space Mono',monospace}
+
+  .topbar{position:sticky;top:0;z-index:20;background:rgba(244,237,225,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:1.2rem}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--rose)}
+  .brand small{font-family:'Space Mono',monospace;font-weight:400;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-left:4px}
+  .nav{display:flex;align-items:center;gap:24px}
+  .nav a{text-decoration:none;color:var(--muted);font-size:14px}
+  .nav a:hover{color:var(--ink)}
+  @media (max-width:720px){.nav a.hide-sm{display:none}}
+  .btn{display:inline-block;text-decoration:none;font-weight:600;font-size:15px;padding:13px 24px;border-radius:999px;border:1px solid transparent}
+  .btn-rose{background:var(--rose);color:#fff}
+  .btn-rose:hover{background:var(--rose-deep)}
+  .btn-line{border-color:var(--ink);color:var(--ink)}
+  .btn-line:hover{background:var(--ink);color:var(--paper)}
+
+  /* hero */
+  .hero{padding:72px 0 64px}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+  @media (max-width:880px){.hero .wrap{grid-template-columns:1fr;gap:40px}}
+  .soon{display:inline-block;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);border:1px solid var(--rose);border-radius:999px;padding:5px 12px;margin-bottom:22px}
+  .hero h1{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:clamp(38px,6vw,64px);line-height:1.04;letter-spacing:-.015em;margin:0 0 20px}
+  .hero h1 em{font-style:italic;font-weight:400;color:var(--rose)}
+  .hero p.lede{font-family:'Fraunces',Georgia,serif;font-size:clamp(18px,2.3vw,21px);color:var(--ink-soft);margin:0 0 30px;max-width:34ch}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px}
+
+  /* ISBN demo mock */
+  .demo{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:0 24px 60px -30px rgba(42,33,27,.35)}
+  .isbn{display:flex;gap:8px;margin-bottom:18px}
+  .isbn span{flex:1;font-family:'Space Mono',monospace;font-size:14px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:11px 12px;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .isbn b{font-family:'Space Mono',monospace;font-size:13px;background:var(--ink);color:var(--paper);border-radius:8px;padding:11px 14px;white-space:nowrap}
+  .site{display:grid;grid-template-columns:120px 1fr;gap:18px;align-items:center;background:var(--paper);border-radius:10px;padding:18px}
+  .cover{aspect-ratio:2/3;border-radius:3px 6px 6px 3px;background:linear-gradient(155deg,#5B2333 0%,#2A1219 100%);box-shadow:6px 8px 18px -6px rgba(42,33,27,.5);display:flex;flex-direction:column;justify-content:space-between;padding:12px 10px;color:#F4EDE1}
+  .cover i{font-family:'Fraunces',Georgia,serif;font-size:15px;line-height:1.1;font-style:normal;font-weight:700}
+  .cover small{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+  .site h4{font-family:'Fraunces',Georgia,serif;font-size:20px;margin:0 0 4px}
+  .site p{font-size:13px;color:var(--muted);margin:0 0 12px;line-height:1.5}
+  .buys{display:flex;flex-wrap:wrap;gap:6px}
+  .buys span{font-size:11px;font-weight:600;border:1px solid var(--line);background:#fff;border-radius:999px;padding:4px 10px}
+  .demo .cap{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);text-align:center;margin:14px 0 0;letter-spacing:.04em}
+
+  section.block{padding:70px 0;border-top:1px solid var(--line)}
+  .kicker{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);margin:0 0 12px}
+  h2{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:clamp(28px,4vw,42px);line-height:1.1;letter-spacing:-.01em;margin:0 0 16px}
+  .sub{color:var(--muted);max-width:60ch;margin:0 0 40px;font-size:16.5px}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media (max-width:820px){.steps{grid-template-columns:1fr}}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:26px}
+  .step .n{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:40px;line-height:1;color:var(--rose);margin-bottom:12px}
+  .step h3{font-family:'Fraunces',Georgia,serif;font-size:21px;margin:0 0 8px}
+  .step p{margin:0;color:var(--muted);font-size:15px}
+
+  /* templates */
+  .tpls{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media (max-width:820px){.tpls{grid-template-columns:1fr}}
+  .tpl{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--card)}
+  .tpl .face{height:170px;padding:20px;display:flex;flex-direction:column;justify-content:flex-end}
+  .tpl .face b{display:block;line-height:1}
+  .tpl .meta{padding:18px 20px 22px}
+  .tpl .meta h3{font-family:'Fraunces',Georgia,serif;font-size:20px;margin:0 0 4px}
+  .tpl .meta p{margin:0;color:var(--muted);font-size:14px}
+  .t-hard .face{background:linear-gradient(180deg,#EFE4D2,#E2D3BB)}
+  .t-hard .face b{font-family:'Fraunces',Georgia,serif;font-size:34px;color:#3A2A20}
+  .t-hard .face small{font-family:'Fraunces',Georgia,serif;font-style:italic;color:#7A6656;margin-top:6px}
+  .t-pulp .face{background:#141414}
+  .t-pulp .face b{font-family:Inter,sans-serif;font-weight:700;font-size:34px;text-transform:uppercase;letter-spacing:-.02em;color:#FFD23F}
+  .t-pulp .face small{font-family:'Space Mono',monospace;color:#F4EDE1;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-top:8px}
+  .t-clean .face{background:#fff;border-bottom:1px solid var(--line)}
+  .t-clean .face b{font-family:Inter,sans-serif;font-weight:600;font-size:30px;letter-spacing:-.02em;color:#1B1B1B}
+  .t-clean .face small{font-family:Inter,sans-serif;color:#777;font-size:13px;margin-top:6px}
+
+  /* features */
+  .feats{display:grid;grid-template-columns:repeat(2,1fr);gap:0 48px}
+  @media (max-width:720px){.feats{grid-template-columns:1fr}}
+  .feat{padding:18px 0;border-bottom:1px solid var(--line)}
+  .feat h3{font-family:'Fraunces',Georgia,serif;font-size:19px;margin:0 0 4px}
+  .feat p{margin:0;color:var(--muted);font-size:15px}
+
+  /* pricing */
+  .tiers{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:860px}
+  @media (max-width:720px){.tiers{grid-template-columns:1fr}}
+  .tier{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:30px}
+  .tier.best{border:2px solid var(--rose);background:#fff;position:relative}
+  .tier.best::before{content:"Best value";position:absolute;top:-12px;left:26px;background:var(--rose);color:#fff;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+  .tier h3{font-family:'Fraunces',Georgia,serif;font-size:22px;margin:0 0 10px}
+  .tier .amt{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:46px;line-height:1}
+  .tier .amt small{font-family:Inter,sans-serif;font-weight:500;font-size:15px;color:var(--muted)}
+  .tier .yr{font-size:14px;color:var(--muted);margin:6px 0 18px}
+  .tier ul{list-style:none;padding:0;margin:0}
+  .tier li{padding:8px 0 8px 24px;position:relative;font-size:15px;border-top:1px solid var(--line)}
+  .tier li::before{content:"✓";position:absolute;left:0;color:var(--rose);font-weight:700}
+  .fine{font-size:13.5px;color:var(--muted);margin:22px 0 0;max-width:70ch}
+
+  /* waitlist */
+  .wait{background:var(--ink);color:var(--paper);border-radius:18px;padding:48px 40px;text-align:center}
+  .wait h2{color:var(--paper)}
+  .wait p{color:#CDBFAE;max-width:52ch;margin:0 auto 26px}
+  .wait .row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+  .wait .btn-line{border-color:#CDBFAE;color:var(--paper)}
+  .wait .btn-line:hover{background:var(--paper);color:var(--ink)}
+
+  footer{padding:36px 0 50px}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;justify-content:space-between}
+  footer .links a{color:var(--muted);text-decoration:none;font-size:13px;margin-right:18px}
+  footer .links a:hover{color:var(--ink)}
+  footer .copy{color:var(--muted);font-size:12.5px}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a href="/" class="brand"><span class="dot"></span>XLSites<small>for authors</small></a>
+    <nav class="nav">
+      <a href="#how" class="hide-sm">How it works</a>
+      <a href="#templates" class="hide-sm">Templates</a>
+      <a href="#pricing" class="hide-sm">Pricing</a>
+      <a href="#waitlist" class="btn btn-rose" style="padding:9px 18px;font-size:14px">Join the waitlist</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="soon">Coming soon</span>
+        <h1>Enter your ISBN. <em>Your author site appears.</em></h1>
+        <p class="lede">Cover, blurb, buy buttons and a page for every book — a finished author website in seconds, with nothing to design.</p>
+        <div class="row">
+          <a href="#waitlist" class="btn btn-rose">Get early access</a>
+          <a href="#pricing" class="btn btn-line">See pricing</a>
+        </div>
+      </div>
+
+      <div class="demo" aria-label="Example: an ISBN turned into an author site">
+        <div class="isbn"><span>978-1-23456-789-7</span><b>Build my site →</b></div>
+        <div class="site">
+          <div class="cover"><small>A novel</small><i>The Salt House</i><small>J. Rowan</small></div>
+          <div>
+            <h4>The Salt House</h4>
+            <p>A family returns to the coast for one last summer — and the secret the tide has kept for thirty years.</p>
+            <div class="buys"><span>Amazon</span><span>Bookshop</span><span>B&amp;N</span><span>Apple</span><span>Kobo</span></div>
+          </div>
+        </div>
+        <p class="cap">Illustration · your real cover and blurb come straight from your ISBN</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="how">
+    <div class="wrap">
+      <p class="kicker">How it works</p>
+      <h2>From one number to a whole website.</h2>
+      <p class="sub">Your ISBN already knows your title, cover, blurb and publisher. We use it to build your site, so you start with something finished — not a blank page.</p>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><h3>Enter your ISBN</h3><p>ISBN-13, ISBN-10 or an Amazon ASIN. We find the book, its cover and your other titles.</p></div>
+        <div class="step"><div class="n">2</div><h3>Pick a look</h3><p>Choose one of three templates and your accent colour. Light or dark, two font pairings each.</p></div>
+        <div class="step"><div class="n">3</div><h3>You're live</h3><p>Add a headshot and bio whenever you're ready. Every new book you publish slots right in.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="templates">
+    <div class="wrap">
+      <p class="kicker">Templates</p>
+      <h2>Made for the way your books look.</h2>
+      <p class="sub">Each one looks finished with nothing but your ISBN — and gets better as you add more.</p>
+      <div class="tpls">
+        <div class="tpl t-hard"><div class="face"><b>Hardcover</b><small>a novel</small></div><div class="meta"><h3>Hardcover</h3><p>Big cover hero, serif type, warm paper tones. For literary fiction and memoir.</p></div></div>
+        <div class="tpl t-pulp"><div class="face"><b>Pulp</b><small>Book 3 of the series</small></div><div class="meta"><h3>Pulp</h3><p>Bold type, high contrast, series-first. For thrillers, horror, sci-fi and romance.</p></div></div>
+        <div class="tpl t-clean"><div class="face"><b>Clean</b><small>A practical guide</small></div><div class="meta"><h3>Clean</h3><p>Minimal, modern and white. For nonfiction, business and how-to.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <p class="kicker">What's on your site</p>
+      <h2>Everything a reader looks for.</h2>
+      <div class="feats">
+        <div class="feat"><h3>Every book, every store</h3><p>A page for each title with buy links to Amazon, Bookshop.org, Barnes &amp; Noble, Apple Books and Kobo.</p></div>
+        <div class="feat"><h3>Series, in order</h3><p>Tell us the series and readers see exactly where to start and what comes next.</p></div>
+        <div class="feat"><h3>Newsletter sign-up</h3><p>Collect reader emails right on your site and export them any time.</p></div>
+        <div class="feat"><h3>About &amp; contact</h3><p>Your bio, headshot and a contact page for readers, press and events.</p></div>
+        <div class="feat"><h3>Your own domain</h3><p>A free .com after three paid months — or right away on annual. Or bring a domain you already own, free.</p></div>
+        <div class="feat"><h3>Write it here, too</h3><p>Pair it with XLWrite, our book writing and formatting app, and your new release goes from manuscript to site.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="pricing">
+    <div class="wrap">
+      <p class="kicker">Pricing</p>
+      <h2>Write it. Format it. Give it a home.</h2>
+      <p class="sub">Two simple ways to get your author site.</p>
+      <div class="tiers">
+        <div class="tier">
+          <h3>Author Site</h3>
+          <div class="amt">$8<small> /month</small></div>
+          <div class="yr">or $72 a year</div>
+          <ul>
+            <li>Your author website</li>
+            <li>All three templates</li>
+            <li>Newsletter sign-up</li>
+            <li>Free domain after 3 months, or on annual</li>
+          </ul>
+        </div>
+        <div class="tier best">
+          <h3>Creator Bundle</h3>
+          <div class="amt">$12<small> /month</small></div>
+          <div class="yr">or $90 a year</div>
+          <ul>
+            <li>Your author website</li>
+            <li><b>XLWrite</b> — write &amp; format your book</li>
+            <li><b>XLScreenplay</b> — for the adaptation</li>
+            <li>Member pricing on every Xandland tool</li>
+            <li>Free domain after 3 months, or on annual</li>
+          </ul>
+        </div>
+      </div>
+      <p class="fine">Prices shown are planned launch pricing. Bring-your-own-domain is free on every plan; one free domain per account.</p>
+    </div>
+  </section>
+
+  <section class="block" id="waitlist" style="border-top:0">
+    <div class="wrap">
+      <div class="wait">
+        <h2>Be first on the shelf.</h2>
+        <p>Author sites are almost ready. Send us your name and your book's ISBN and we'll build yours the day we open.</p>
+        <div class="row">
+          <a href="mailto:tjalex@xandland.com?subject=Author%20site%20waitlist&amp;body=Name%3A%0AISBN%3A%0A" class="btn btn-rose">Join the waitlist</a>
+          <a href="https://www.xlwrite.com" class="btn btn-line">Meet XLWrite</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="/" class="brand"><span class="dot"></span>XLSites</a>
+    <nav class="links mono">
+      <a href="/">Home</a>
+      <a href="/filmmakers">Filmmakers</a>
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+    </nav>
+    <span class="copy">© 2026 Xandland Enterprises, LLC</span>
+  </div>
+</footer>
+
+</body>
+</html>

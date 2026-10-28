@@ -1,7 +1,4 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false,
-  "redirects": [
-    { "source": "/filmmakers", "destination": "/", "permanent": true }
-  ]
+  "trailingSlash": false
 }
