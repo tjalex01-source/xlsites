@@ -81,23 +81,18 @@
   .step p{margin:0;color:var(--muted);font-size:15px}
 
   /* templates */
-  .tpls{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  @media (max-width:820px){.tpls{grid-template-columns:1fr}}
-  .tpl{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--card)}
-  .tpl .face{height:170px;padding:20px;display:flex;flex-direction:column;justify-content:flex-end}
-  .tpl .face b{display:block;line-height:1}
-  .tpl .meta{padding:18px 20px 22px}
-  .tpl .meta h3{font-family:'Fraunces',Georgia,serif;font-size:20px;margin:0 0 4px}
-  .tpl .meta p{margin:0;color:var(--muted);font-size:14px}
-  .t-hard .face{background:linear-gradient(180deg,#EFE4D2,#E2D3BB)}
-  .t-hard .face b{font-family:'Fraunces',Georgia,serif;font-size:34px;color:#3A2A20}
-  .t-hard .face small{font-family:'Fraunces',Georgia,serif;font-style:italic;color:#7A6656;margin-top:6px}
-  .t-pulp .face{background:#141414}
-  .t-pulp .face b{font-family:Inter,sans-serif;font-weight:700;font-size:34px;text-transform:uppercase;letter-spacing:-.02em;color:#FFD23F}
-  .t-pulp .face small{font-family:'Space Mono',monospace;color:#F4EDE1;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-top:8px}
-  .t-clean .face{background:#fff;border-bottom:1px solid var(--line)}
-  .t-clean .face b{font-family:Inter,sans-serif;font-weight:600;font-size:30px;letter-spacing:-.02em;color:#1B1B1B}
-  .t-clean .face small{font-family:Inter,sans-serif;color:#777;font-size:13px;margin-top:6px}
+  .tpls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+  @media (max-width:980px){.tpls{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:620px){.tpls{grid-template-columns:minmax(0,1fr)}}
+  .tpl{margin:0;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--card);transition:transform .2s ease,box-shadow .2s ease}
+  .tpl:hover{transform:translateY(-3px);box-shadow:0 22px 44px -28px rgba(42,33,27,.45)}
+  .tpl img{display:block;width:100%;height:auto;aspect-ratio:8/5;object-fit:cover;object-position:top;border-bottom:1px solid var(--line);background:var(--paper-deep)}
+  .tpl figcaption{padding:16px 18px 20px}
+  .tpl h3{font-family:'Fraunces',Georgia,serif;font-size:20px;margin:0 0 4px}
+  .tpl p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
+  .tpl .for{margin-top:10px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.02em;color:var(--rose-deep)}
+  .tpl-note{margin:26px 0 0;font-size:13.5px;color:var(--muted);max-width:70ch}
+  @media (prefers-reduced-motion:reduce){.tpl{transition:none}.tpl:hover{transform:none}}
 
   /* features */
   .feats{display:grid;grid-template-columns:repeat(2,1fr);gap:0 48px}
@@ -185,7 +180,7 @@
       <p class="sub">Your ISBN already knows your title, cover, blurb and publisher. We use it to build your site, so you start with something finished — not a blank page.</p>
       <div class="steps">
         <div class="step"><div class="n">1</div><h3>Enter your ISBN</h3><p>ISBN-13, ISBN-10 or an Amazon ASIN. We find the book, its cover and your other titles.</p></div>
-        <div class="step"><div class="n">2</div><h3>Pick a look</h3><p>Choose one of three templates. Match your cover's colours in one click, or pick a palette — light or dark, four font pairings each.</p></div>
+        <div class="step"><div class="n">2</div><h3>Pick a look</h3><p>Choose one of nine templates. Match your cover's colours in one click, or pick a palette — light or dark, four font pairings each.</p></div>
         <div class="step"><div class="n">3</div><h3>You're live</h3><p>Add a headshot and bio whenever you're ready. Every new book you publish slots right in.</p></div>
       </div>
     </div>
@@ -194,13 +189,20 @@
   <section class="block" id="templates">
     <div class="wrap">
       <p class="kicker">Templates</p>
-      <h2>Made for the way your books look.</h2>
-      <p class="sub">Each one looks finished with nothing but your ISBN — and gets better as you add more.</p>
+      <h2>Nine templates. Nine different shapes.</h2>
+      <p class="sub">Not one layout in nine colours: each is built differently, around a different idea of what your site should lead with. All nine look finished with nothing but your ISBN, and you can switch whenever you like without losing a thing.</p>
       <div class="tpls">
-        <div class="tpl t-hard"><div class="face"><b>Hardcover</b><small>a novel</small></div><div class="meta"><h3>Hardcover</h3><p>Big cover hero, serif type, warm paper tones. For literary fiction and memoir.</p></div></div>
-        <div class="tpl t-pulp"><div class="face"><b>Pulp</b><small>Book 3 of the series</small></div><div class="meta"><h3>Pulp</h3><p>Bold type, high contrast, series-first. For thrillers, horror, sci-fi and romance.</p></div></div>
-        <div class="tpl t-clean"><div class="face"><b>Clean</b><small>A practical guide</small></div><div class="meta"><h3>Clean</h3><p>Minimal, modern and white. For nonfiction, business and how-to.</p></div></div>
+        <figure class="tpl"><img src="screens/authors/masthead.jpg" alt="An author site on the Masthead template: the author's name centred over the menu, with the book and its cover below" width="960" height="600" loading="lazy"><figcaption><h3>Masthead</h3><p>Your name centred over a title-page opening. Familiar to readers, finished in minutes.</p><p class="for">Any genre</p></figcaption></figure>
+        <figure class="tpl"><img src="screens/authors/hardcover.jpg" alt="An author site on the Hardcover template: the cover drawn as a large three-dimensional book beside the title" width="960" height="600" loading="lazy"><figcaption><h3>Hardcover</h3><p>Your book as an object, large, like a jacket on a front table. Serif type, unhurried.</p><p class="for">Literary fiction · memoir · historical</p></figcaption></figure>
+        <figure class="tpl"><img src="screens/authors/jacket.jpg" alt="An author site on the Jacket template: the cover beside a dark glass panel, over the cover's own colours" width="960" height="600" loading="lazy"><figcaption><h3>Jacket</h3><p>Your cover art fills the whole page, and everything sits on dark glass over it.</p><p class="for">Horror · thriller · fantasy · romance</p></figcaption></figure>
+        <figure class="tpl"><img src="screens/authors/pulp.jpg" alt="An author site on the Pulp template: the author's name in huge type with the new release stamped across it" width="960" height="600" loading="lazy"><figcaption><h3>Pulp</h3><p>Your name, huge. Hard contrast and series first, with every book numbered and in order.</p><p class="for">Thriller · horror · sci-fi · romance series</p></figcaption></figure>
+        <figure class="tpl"><img src="screens/authors/backlist.jpg" alt="An author site on the Backlist template: a wall of six book covers with buttons to filter by series" width="960" height="600" loading="lazy"><figcaption><h3>Backlist</h3><p>A wall of every cover you've published, with readers one tap from each series.</p><p class="for">Authors with a deep catalogue</p></figcaption></figure>
+        <figure class="tpl"><img src="screens/authors/clean.jpg" alt="An author site on the Clean template: a large plain headline beside the book" width="960" height="600" loading="lazy"><figcaption><h3>Clean</h3><p>Minimal and modern. The idea leads, and the book backs it up.</p><p class="for">Nonfiction · business · how-to</p></figcaption></figure>
+        <figure class="tpl"><img src="screens/authors/frontispiece.jpg" alt="An author site on the Frontispiece template: the author's portrait filling the opening, with the name set over it" width="960" height="600" loading="lazy"><figcaption><h3>Frontispiece</h3><p>Your portrait fills the opening, and the books follow in one quiet column.</p><p class="for">Memoir · poetry · literary, when you are the brand</p></figcaption></figure>
+        <figure class="tpl"><img src="screens/authors/debut.jpg" alt="An author site on the Debut template: one cover alone in a pool of light on a dark page" width="960" height="600" loading="lazy"><figcaption><h3>Debut</h3><p>One book, one long page: the cover, the praise, the date, the buy buttons.</p><p class="for">A first book · a launch · a pre-order</p></figcaption></figure>
+        <figure class="tpl"><img src="screens/authors/chapbook.jpg" alt="An author site on the Chapbook template: a passage from the book, set large, opening the page" width="960" height="600" loading="lazy"><figcaption><h3>Chapbook</h3><p>Words first. A passage from your book opens the page, with almost no imagery at all.</p><p class="for">Poetry · essays · small press</p></figcaption></figure>
       </div>
+      <p class="tpl-note">Every picture is the real template, shown with an invented author and invented books. Yours will have your covers and your words, and any template can take its colours from your cover.</p>
     </div>
   </section>
 
@@ -230,7 +232,7 @@
           <div class="amt">$12<small> /month</small></div>
           <div class="yr">or $90 a year — save $54</div>
           <ul>
-            <li>Your author website, all three templates</li>
+            <li>Your author website, all nine templates</li>
             <li><b>XLWrite</b> — write &amp; format your book</li>
             <li><b>XLScreenplay</b> — for the adaptation</li>
             <li>Member pricing on every Xandland tool</li>
