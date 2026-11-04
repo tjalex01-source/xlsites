@@ -54,9 +54,11 @@
 
   /* ISBN demo mock */
   .demo{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:0 24px 60px -30px rgba(42,33,27,.35)}
-  .isbn{display:flex;gap:8px;margin-bottom:18px}
-  .isbn span{flex:1;min-width:0;font-family:'Space Mono',monospace;font-size:14px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:11px 12px;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .isbn b{font-family:'Space Mono',monospace;font-size:13px;background:var(--ink);color:var(--paper);border-radius:8px;padding:11px 14px;white-space:nowrap}
+  .isbn{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+  .isbn input{flex:999 1 170px;min-width:0;font-family:'Space Mono',monospace;font-size:16px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:11px 12px;color:var(--ink)}
+  .isbn input:focus{outline:2px solid var(--rose);outline-offset:1px}
+  .isbn button{flex:1 0 auto;font-family:'Space Mono',monospace;font-size:13px;font-weight:700;background:var(--rose);color:#fff;border:0;border-radius:8px;padding:11px 14px;white-space:nowrap;cursor:pointer}
+  .isbn button:hover{background:var(--rose-deep)}
   .site{display:grid;grid-template-columns:min(120px,30%) minmax(0,1fr);gap:18px;align-items:center;background:var(--paper);border-radius:10px;padding:18px}
   .cover{aspect-ratio:2/3;border-radius:3px 6px 6px 3px;background:linear-gradient(155deg,#5B2333 0%,#2A1219 100%);box-shadow:6px 8px 18px -6px rgba(42,33,27,.5);display:flex;flex-direction:column;justify-content:space-between;padding:12px 10px;color:#F4EDE1}
   .cover i{font-family:'Fraunces',Georgia,serif;font-size:15px;line-height:1.1;font-style:normal;font-weight:700}
@@ -140,7 +142,7 @@
       <a href="#how" class="hide-sm">How it works</a>
       <a href="#templates" class="hide-sm">Templates</a>
       <a href="#pricing" class="hide-sm">Pricing</a>
-      <a href="https://www.xandland.com/xlsites?checkout=monthly&amp;kind=author" class="btn btn-rose" style="padding:9px 18px;font-size:14px">Start your site</a>
+      <a href="https://build.xandland.com/try" class="btn btn-rose" style="padding:9px 18px;font-size:14px">See your site</a>
     </nav>
   </div>
 </header>
@@ -153,13 +155,13 @@
         <h1>Enter your ISBN. <em>Your author site appears.</em></h1>
         <p class="lede">Cover, blurb, buy buttons and a page for every book — a finished author website in seconds, in colours taken from your own cover.</p>
         <div class="row">
-          <a href="https://www.xandland.com/xlsites?checkout=monthly&amp;kind=author" class="btn btn-rose">Start your site — $12/mo</a>
+          <a href="https://build.xandland.com/try" class="btn btn-rose">See your site, free</a>
           <a href="#pricing" class="btn btn-line">See pricing</a>
         </div>
       </div>
 
       <div class="demo" aria-label="Example: an ISBN turned into an author site">
-        <div class="isbn"><span>978-1-23456-789-7</span><b>Build my site →</b></div>
+        <form class="isbn" action="https://build.xandland.com/try" method="get"><input name="isbn" aria-label="Your ISBN" placeholder="Your ISBN" autocomplete="off" required><button type="submit">See my site →</button></form>
         <div class="site">
           <div class="cover"><small>A novel</small><i>The Salt House</i><small>J. Rowan</small></div>
           <div>
@@ -168,7 +170,7 @@
             <div class="buys"><span>Amazon</span><span>Bookshop</span><span>B&amp;N</span><span>Apple</span><span>Kobo</span></div>
           </div>
         </div>
-        <p class="cap">Illustration · your real cover and blurb come straight from your ISBN</p>
+        <p class="cap">Try yours above: no email, no account. This one is an illustration.</p>
       </div>
     </div>
   </section>
