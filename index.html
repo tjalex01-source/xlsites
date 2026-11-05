@@ -55,6 +55,14 @@
   @media (max-width:820px){.doors{grid-template-columns:1fr}}
   .door{position:relative;display:flex;flex-direction:column;padding:34px 32px 30px;min-height:460px;text-decoration:none;transition:transform .18s ease}
   .door:hover{transform:translateY(-3px)}
+  .door-hit{position:absolute;inset:0;z-index:1}
+  .door p.incl{position:relative;z-index:2;margin:0 0 24px;padding:11px 14px;border-radius:8px;background:#0C0F14;color:#ECE6D9;font-size:14.5px;line-height:1.5}
+  /* The two apps: white XL, each name in its own product's colour, always on a dark ground */
+  .xln{font-weight:700;text-decoration:none;white-space:nowrap}
+  .xln b{color:#fff;font-weight:700}
+  .xln:hover{text-decoration:underline;text-underline-offset:3px}
+  .xs{color:#60a5fa}
+  .xw{color:#fb7185}
   .door .tag{align-self:flex-start;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:4px 9px;margin-bottom:22px}
   .door h2{margin:0 0 14px;line-height:1.05}
   .door p{margin:0 0 20px;font-size:15.5px}
@@ -126,7 +134,8 @@
   <section>
     <div class="wrap doors">
 
-      <a class="door film" href="/filmmakers">
+      <div class="door film">
+        <a class="door-hit" href="/filmmakers" aria-label="Explore filmmaker sites"></a>
         <span class="tag">Live now</span>
         <h2>For Filmmakers</h2>
         <p>A reel-first showcase site — your work, your credits and how to reach you, in a cinematic theme you set up in minutes.</p>
@@ -136,10 +145,12 @@
           <li>Themes built for actors, directors and crew</li>
           <li>Edit it yourself, any time</li>
         </ul>
+        <p class="incl">Included free: <a class="xln xs" href="https://www.xlscreenplay.com" target="_blank" rel="noopener"><b>XL</b>Screenplay</a> and <a class="xln xw" href="https://www.xlwrite.com" target="_blank" rel="noopener"><b>XL</b>Write</a></p>
         <span class="go">Explore filmmaker sites →</span>
-      </a>
+      </div>
 
-      <a class="door author" href="/authors">
+      <div class="door author">
+        <a class="door-hit" href="/authors" aria-label="See author sites"></a>
         <span class="tag">New</span>
         <h2>For Authors</h2>
         <p>Enter your book's ISBN and your author site appears — cover, blurb, buy buttons and all.</p>
@@ -147,10 +158,11 @@
           <li>Built from one ISBN in seconds</li>
           <li>Every book, with buy links to every store</li>
           <li>Newsletter sign-up for your readers</li>
-          <li>Colours taken from your own cover</li>
+          <li>Nine templates, each one yours to customize</li>
         </ul>
+        <p class="incl">Included free: <a class="xln xs" href="https://www.xlscreenplay.com" target="_blank" rel="noopener"><b>XL</b>Screenplay</a> and <a class="xln xw" href="https://www.xlwrite.com" target="_blank" rel="noopener"><b>XL</b>Write</a></p>
         <span class="go">See author sites →</span>
-      </a>
+      </div>
 
     </div>
   </section>
@@ -161,7 +173,7 @@
         <div class="price">$12<small>a month · or $90 a year</small></div>
         <div>
           <h3>One membership. Everything you need.</h3>
-          <p>Your site — <b>filmmaker or author, your pick</b> — plus <b>XLScreenplay and XLWrite free</b>, and <b>member pricing on every Xandland tool</b>: coverage, breakdowns, proofreading, pitches and synopses. First 14 days free, no card needed. No contracts; cancel any time.</p>
+          <p>Your site — <b>filmmaker or author, your pick</b> — plus <b><a class="xln xs" href="https://www.xlscreenplay.com" target="_blank" rel="noopener"><b>XL</b>Screenplay</a> and <a class="xln xw" href="https://www.xlwrite.com" target="_blank" rel="noopener"><b>XL</b>Write</a> free</b>, and <b>member pricing on every Xandland tool</b>: coverage, breakdowns, proofreading, pitches and synopses. First 14 days free, no card needed. No contracts; cancel any time.</p>
           <div class="row">
             <a href="/filmmakers" class="btn btn-solid">Start free for 14 days →</a>
             <a href="https://www.xandland.com/dashboard" class="btn btn-line">Already a member? Go to your dashboard</a>
